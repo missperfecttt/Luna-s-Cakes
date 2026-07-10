@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luna's Cakes</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">🍰 Luna's Cakes</div>
+  <nav class="nav" id="nav">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#cakes">Cakes</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#order">Order</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="menu-btn" id="menuBtn">☰</button>
+</header>
+
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h1>Freshly Baked Happiness</h1>
+    <p>Handmade cakes for birthdays, graduations, weddings, and every celebration.</p>
+    <a href="#order" class="btn">Order Now</a>
+  </div>
+</section>
+
+<section id="about" class="section">
+  <h2>About Me</h2>
+  <p class="center-text">
+    Hi, I'm Luna! I started Luna's Cakes because I love creating beautiful cakes
+    that make people smile. Every cake is baked fresh and decorated by hand with care.
+  </p>
+</section>
+
+<section id="cakes" class="section">
+  <h2>Featured Cakes</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="card-image">🍫</div>
+      <h3>Chocolate Cake</h3>
+      <p>Rich chocolate layers with buttercream frosting.</p>
+      <span>From 1000 ETB</span>
+    </div>
+
+    <div class="card">
+      <div class="card-image">🎂</div>
+      <h3>Birthday Cake</h3>
+      <p>Colorful celebration cake for special birthdays.</p>
+      <span>From 1,200 ETB</span>
+    </div>
+
+    <div class="card">
+      <div class="card-image">🎓</div>
+      <h3>Graduation Cake</h3>
+      <p>Celebrate your achievement in style.</p>
+      <span>From 1,500 ETB</span>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="section">
+  <h2>Gallery</h2>
+  <div class="gallery">
+    <div class="gallery-item">🍰</div>
+    <div class="gallery-item">🧁</div>
+    <div class="gallery-item">🎂</div>
+    <div class="gallery-item">🍓</div>
+    <div class="gallery-item">🍫</div>
+    <div class="gallery-item">🌸</div>
+  </div>
+</section>
+
+<section id="order" class="section order-section">
+  <h2>Order Your Cake</h2>
+  <form id="orderForm" class="order-form">
+    <input type="text" placeholder="Your Name" required>
+    <input type="tel" placeholder="Phone Number" required>
+
+    <select required>
+      <option value="">Select Occasion</option>
+      <option>Birthday</option>
+      <option>Graduation</option>
+      <option>Wedding</option>
+      <option>Anniversary</option>
+    </select>
+
+    <input type="date" required>
+
+    <textarea rows="5" placeholder="Describe your dream cake"></textarea>
+
+    <button type="submit" class="btn">Place Order</button>
+  </form>
+</section>
+
+<section class="section reviews">
+  <h2>Happy Customers</h2>
+  <div class="review-grid">
+    <div class="review">
+      <p>⭐⭐⭐⭐⭐</p>
+      <p>"The cake looked amazing and tasted even better!"</p>
+      <strong>- Sara</strong>
+    </div>
+
+    <div class="review">
+      <p>⭐⭐⭐⭐⭐</p>
+      <p>"Highly recommended for birthdays and events."</p>
+      <strong>- Daniel</strong>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section contact">
+  <h2>Contact</h2>
+  <p>📍 Addis Ababa, Ethiopia</p>
+  <p>📞 +251-988175522</p>
+  <p>📧 abigailmekonnen70@gmail.com</p>
+
+  <a href="https://wa.me/251988175522" class="btn whatsapp-btn">Chat on WhatsApp</a>
+</section>
+
+<footer class="footer">
+  <p>© 2026 Sweet Bliss Cakes — Made with ❤️ by Luna</p>
+</footer>
+
+<button id="topBtn" class="top-btn">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>
