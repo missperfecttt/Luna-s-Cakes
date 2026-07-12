@@ -50,12 +50,19 @@ orderForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const orderData = {
-    name: document.getElementById("name").value,
-    phone: document.getElementById("phone").value,
-    occasion: document.getElementById("occasion").value,
-    deliveryDate: document.getElementById("deliveryDate").value,
-    notes: document.getElementById("notes").value,
-  };
+  name: document.getElementById("name").value,
+  phone: document.getElementById("phone").value,
+  email: document.getElementById("email").value,
+  occasion: document.getElementById("occasion").value,
+  flavor: document.getElementById("flavor").value,
+  size: document.getElementById("size").value,
+  deliveryDate: document.getElementById("deliveryDate").value,
+  deliveryTime: document.getElementById("deliveryTime").value,
+  method: document.getElementById("method").value,
+  address: document.getElementById("address").value,
+  budget: document.getElementById("budget").value,
+  notes: document.getElementById("notes").value
+};
 
   try {
     const response = await fetch(scriptURL, {
