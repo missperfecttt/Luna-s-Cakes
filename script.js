@@ -44,7 +44,7 @@ const orderForm = document.getElementById("orderForm");
 
 // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
 const scriptURL =
-  "https://script.google.com/macros/s/AKfycbw9iiTZ6FfS3aN14hNs2z2gc-WRB11hVvKepAEH9y-g55q4gZdvEHIL3ZNunvPjy1YI/exec";
+  "https://script.google.com/macros/s/AKfycby-qYbg1Bpu6oZkZXOCMN3bm1KuZSlvDq3ZyR432QW0UX5njUyjgp9CNXMhdy1A0lPr/exec";
 
 orderForm.addEventListener("submit", async (e) => {
   e.preventDefault();
