@@ -65,17 +65,16 @@ orderForm.addEventListener("submit", async (e) => {
 };
 
   try {
-    const response = await fetch(scriptURL, {
-      method: "POST",
+   const formData = new FormData();
 
-      headers: {
-        "Content-Type": "application/json",
-      },
+Object.keys(orderData).forEach(key => {
+  formData.append(key, orderData[key]);
+});
 
-      body: JSON.stringify(orderData),
-    });
-
-    const result = await response.json();
+const response = await fetch(scriptURL, {
+  method: "POST",
+  body: formData
+});
 
     if (result.result === "success") {
       alert("🎉 Thank you! Your order has been submitted.");
