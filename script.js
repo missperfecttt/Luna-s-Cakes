@@ -70,13 +70,13 @@ if (imageFile) {
     }
   );
 
- const uploadResult = await uploadResponse.json();
+const uploadResult = await uploadResponse.json();
 
-if (!uploadResponse.ok || !uploadResult.secure_url) {
-  throw new Error("Image upload failed.");
-}
+console.log("Cloudinary Response:", uploadResult);
 
-imageURL = uploadResult.secure_url;
+imageURL = uploadResult.secure_url || "";
+
+console.log("Image URL:", imageURL);
 
 document.getElementById("uploadStatus").innerText =
   "✅ Image uploaded successfully!";
@@ -97,6 +97,7 @@ const orderData = {
   notes: document.getElementById("notes").value,
   imageURL: imageURL,
 };
+  console.log("Order Data:", orderData);
   try {
     const response = await fetch(scriptURL, {
       method: "POST",
