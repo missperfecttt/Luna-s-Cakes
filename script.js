@@ -69,12 +69,16 @@ if (imageFile) {
     }
   );
 
-  const uploadResult = await uploadResponse.json();
+ const uploadResult = await uploadResponse.json();
 
-  imageURL = uploadResult.secure_url;
+if (!uploadResponse.ok || !uploadResult.secure_url) {
+  throw new Error("Image upload failed.");
+}
 
-  document.getElementById("uploadStatus").innerText =
-    "✅ Image uploaded successfully!";
+imageURL = uploadResult.secure_url;
+
+document.getElementById("uploadStatus").innerText =
+  "✅ Image uploaded successfully!";
 }
 
 const orderData = {
