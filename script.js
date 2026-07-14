@@ -49,21 +49,49 @@ const scriptURL =
 orderForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const orderData = {
-    name: document.getElementById("name").value,
-    phone: document.getElementById("phone").value,
-    email: document.getElementById("email").value,
-    occasion: document.getElementById("occasion").value,
-    flavor: document.getElementById("flavor").value,
-    size: document.getElementById("size").value,
-    deliveryDate: document.getElementById("deliveryDate").value,
-    deliveryTime: document.getElementById("deliveryTime").value,
-    method: document.getElementById("method").value,
-    address: document.getElementById("address").value,
-    budget: document.getElementById("budget").value,
-    notes: document.getElementById("notes").value
-  };
+ let imageURL = "";
 
+const imageFile = document.getElementById("referenceImage").files[0];
+
+if (imageFile) {
+  document.getElementById("uploadStatus").innerText = "Uploading image...";
+
+  const formData = new FormData();
+
+  formData.append("file", imageFile);
+  formData.append("upload_preset", "lunascakes_upload");
+
+  const uploadResponse = await fetch(
+    "https://api.cloudinary.com/v1_1/xpzpo4yy/image/upload",
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
+
+  const uploadResult = await uploadResponse.json();
+
+  imageURL = uploadResult.secure_url;
+
+  document.getElementById("uploadStatus").innerText =
+    "✅ Image uploaded successfully!";
+}
+
+const orderData = {
+  name: document.getElementById("name").value,
+  phone: document.getElementById("phone").value,
+  email: document.getElementById("email").value,
+  occasion: document.getElementById("occasion").value,
+  flavor: document.getElementById("flavor").value,
+  size: document.getElementById("size").value,
+  deliveryDate: document.getElementById("deliveryDate").value,
+  deliveryTime: document.getElementById("deliveryTime").value,
+  method: document.getElementById("method").value,
+  address: document.getElementById("address").value,
+  budget: document.getElementById("budget").value,
+  notes: document.getElementById("notes").value,
+  imageURL: imageURL,
+};
   try {
     const response = await fetch(scriptURL, {
       method: "POST",
