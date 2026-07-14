@@ -70,6 +70,7 @@ const scriptURL =
 ]);";
 
 orderForm.addEventListener("submit", async (e) => {
+  alert("Submit event fired!");
   e.preventDefault();
 
   console.clear();
