@@ -50,7 +50,24 @@ document.querySelectorAll(".section, .card, .review").forEach((el) => {
 const orderForm = document.getElementById("orderForm");
 
 const scriptURL =
-  "https://script.google.com/macros/s/AKfycbwHBzNpRRKF2Bi8wQIjEmEdBTJY3xJhO0gydXvHjjmzZ6zjOE-yP02esAQOAHcD6UQw/exec";
+  "sheet.appendRow([
+  "LC-" + Utilities.getUuid().substring(0,8),
+  new Date(),
+  data.name || "",
+  data.phone || "",
+  data.email || "",
+  data.occasion || "",
+  data.flavor || "",
+  data.size || "",
+  data.deliveryDate || "",
+  data.deliveryTime || "",
+  data.method || "",
+  data.address || "",
+  data.budget || "",
+  data.notes || "",
+  "Pending",
+  data.imageURL || ""
+]);";
 
 orderForm.addEventListener("submit", async (e) => {
   e.preventDefault();
