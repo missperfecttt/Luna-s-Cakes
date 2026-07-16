@@ -48,7 +48,7 @@ const cloudinaryUrl = "https://api.cloudinary.com/v1_1/xpzpo4yy/image/upload";
 const cloudinaryPreset = "luna_cakes_preset";
 
 // Google Apps Script Web App URL
-const scriptURL = "https://script.google.com/macros/s/AKfycbz6P-xMOioZUcmDAkxUn1tk-BviqdInDy8TzpSHzb9fddkNgU7vw6bn958KBpxcQ71m/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzIMVfgemHrnlx1GdFpjVuRTNbZoIThFgTEEsEqPi6ZkjBGW0SBTeWFY34dt7o_4p9L/exec";
 
 orderForm.addEventListener("submit", async (e) => {
   e.preventDefault();
