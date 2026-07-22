@@ -125,24 +125,44 @@ orderForm.addEventListener("submit", async (e) => {
       body: new URLSearchParams(orderData),
     });
 
-    const result = await response.json();
-
-    console.log("Apps Script Response:", result);
-
-    if (result.result === "success") {
-      orderForm.reset();
-
-      // Redirect to payment page
-      window.location.href =
-        "payment.html?order=" + encodeURIComponent(orderID);
-    } else {
-      alert("There was an issue submitting your order. Please try again.");
-    }
-  } catch (error) {
-    console.error(error);
-    alert("Something went wrong. Please try again.");
-  } finally {
-    submitButton.textContent = originalButtonText;
-    submitButton.disabled = false;
-  }
+    const response = await fetch(scriptURL, {
+      method:"POST",
+      body:new URLSearchParams(orderData)
 });
+
+
+const result = await response.json();
+
+
+if(result.result==="success"){
+
+
+alert(
+"🎉 Order submitted!\n\nYour Order ID is: "
++ result.orderId
+);
+
+
+
+localStorage.setItem(
+"orderId",
+result.orderId
+);
+
+
+
+window.location.href =
+"payment.html";
+
+
+}
+
+else{
+
+
+alert(
+"Something went wrong"
+);
+
+
+}
