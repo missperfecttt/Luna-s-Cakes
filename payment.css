@@ -1,1 +1,161 @@
+body{
 
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:#fff8fb;
+    color:#444;
+
+}
+
+
+header{
+
+    background:#d46a92;
+    padding:20px;
+    text-align:center;
+    color:white;
+
+}
+
+
+header h1{
+
+    font-family:'Great Vibes',cursive;
+    font-size:45px;
+
+}
+
+
+
+.payment-container{
+
+    max-width:800px;
+    margin:40px auto;
+    padding:30px;
+
+    background:white;
+
+    border-radius:20px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+
+}
+
+
+
+h2{
+
+    text-align:center;
+    color:#d46a92;
+
+}
+
+
+
+.instruction{
+
+    text-align:center;
+}
+
+
+
+.payment-methods{
+
+    display:flex;
+    gap:20px;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+}
+
+
+
+.payment-card{
+
+    width:280px;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    background:#fff0f5;
+
+    text-align:center;
+
+}
+
+
+
+.payment-card h3{
+
+    color:#d46a92;
+
+}
+
+
+
+button{
+
+    background:#d46a92;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 20px;
+
+    border-radius:25px;
+
+    cursor:pointer;
+
+}
+
+
+
+button:hover{
+
+    opacity:.8;
+
+}
+
+
+
+form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+
+input{
+
+    padding:15px;
+
+    border-radius:10px;
+
+    border:1px solid #ddd;
+
+}
+
+
+
+.submit-btn{
+
+    margin-top:20px;
+
+}
+
+
+
+hr{
+
+    margin:40px 0;
+
+}
