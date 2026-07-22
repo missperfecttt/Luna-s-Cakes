@@ -1,110 +1,68 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
-<title>Payment Verification</title>
-
-<link rel="stylesheet" href="payment.css">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment Verification - Luna's Cakes</title>
+  <link rel="stylesheet" href="payment.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
 </head>
-
-
 <body>
 
+  <div class="payment-box">
+    <h1>Payment Verification</h1>
+    <div id="orderIdBadge" class="order-id-badge" style="display: none;"></div>
 
-<div class="payment-box">
+    <h3>Select Payment Method</h3>
 
+    <div class="payment-options">
+      <button class="payment-card" id="telebirrBtn" type="button">
+        <p>📱 Telebirr</p>
+      </button>
 
-<h1>Payment Verification</h1>
+      <button class="payment-card" id="cbeBtn" type="button">
+        <p>🏦 CBE</p>
+      </button>
+    </div>
 
+    <div id="paymentDetails" class="details">
+      <p>Select a payment method above to view payment instructions.</p>
+    </div>
 
-<h3>Select Payment Method</h3>
+    <form id="paymentForm">
+      <input 
+        id="name"
+        type="text"
+        placeholder="Full Name"
+        required
+      />
 
+      <input 
+        id="phone"
+        type="tel"
+        placeholder="Phone Number"
+        required
+      />
 
-<div class="payment-options">
+      <label for="paymentScreenshot">Upload Payment Screenshot</label>
+      <input 
+        id="paymentScreenshot"
+        type="file"
+        accept="image/*"
+        required
+      />
 
+      <button id="submitBtn" type="submit">
+        Submit Verification
+      </button>
+    </form>
+  </div>
 
-<button class="payment-card" id="telebirrBtn">
-
-<img src="Telebirr Logo.jpg">
-
-<p>Telebirr</p>
-
-</button>
-
-
-
-<button class="payment-card" id="cbeBtn">
-
-<img src="CBE Logo.jpg">
-
-<p>CBE</p>
-
-</button>
-
-
-</div>
-
-
-
-<div id="paymentDetails" class="details">
-
-
-<p>Select a payment method above</p>
-
-
-</div>
-
-
-
-
-<form id="paymentForm">
-
-
-<input 
-id="name"
-type="text"
-placeholder="Full Name"
-required>
-
-
-
-<input 
-id="phone"
-type="tel"
-placeholder="Phone Number"
-required>
-
-
-
-
-<input 
-id="paymentScreenshot"
-type="file"
-accept="image/*"
-required>
-
-
-
-<button id="submitBtn" type="submit">
-
-Submit Verification
-
-</button>
-
-
-
-</form>
-
-
-</div>
-
-
-
-<script src="payment.js"></script>
-
-
+  <script src="payment.js"></script>
 </body>
-
 </html>
