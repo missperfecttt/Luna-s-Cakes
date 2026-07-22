@@ -100,23 +100,46 @@ orderForm.addEventListener("submit", async (e) => {
     submitButton.disabled = true;
 
     const orderData = {
-      orderID: orderID,
 
-      name: document.getElementById("name").value,
-      phone: document.getElementById("phone").value,
-      email: document.getElementById("email").value,
-      occasion: document.getElementById("occasion").value,
-      flavor: document.getElementById("flavor").value,
-      size: document.getElementById("size").value,
-      deliveryDate: document.getElementById("deliveryDate").value,
-      deliveryTime: document.getElementById("deliveryTime").value,
-      method: document.getElementById("method").value,
-      address: document.getElementById("address").value,
-      budget: document.getElementById("budget").value,
-      notes: document.getElementById("notes").value,
-      imageUrl: imageUrl,
-    };
+name:
+document.getElementById("name").value,
 
+phone:
+document.getElementById("phone").value,
+
+email:
+document.getElementById("email").value,
+
+occasion:
+document.getElementById("occasion").value,
+
+flavor:
+document.getElementById("flavor").value,
+
+size:
+document.getElementById("size").value,
+
+deliveryDate:
+document.getElementById("deliveryDate").value,
+
+deliveryTime:
+document.getElementById("deliveryTime").value,
+
+method:
+document.getElementById("method").value,
+
+address:
+document.getElementById("address").value,
+
+budget:
+document.getElementById("budget").value,
+
+notes:
+document.getElementById("notes").value,
+
+imageUrl:imageUrl
+
+};
     console.log("Order Data:", orderData);
 
     // ================= Send Order =================
