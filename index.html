@@ -84,86 +84,84 @@
       </div>
     </section>
     
-   <section id="order">
-     <form id="orderForm" class="order-form">
-      <h2>Order Your Cake</h2>
-      <label for="referenceImage">Reference Image (Optional)</label>
+    <section id="order">
+      <form id="orderForm" class="order-form">
+        <h2>Order Your Cake</h2>
+        <label for="referenceImage">Reference Image (Optional)</label>
+        <input id="referenceImage" type="file" accept="image/*" />
 
-      <input id="referenceImage" type="file" accept="image/*" />
-      <!-- Customer Information -->
-      <input id="name" type="text" placeholder="Full Name" required />
+        <!-- Customer Information -->
+        <input id="name" type="text" placeholder="Full Name" required />
+        <input id="phone" type="tel" placeholder="Phone Number" required />
+        <input id="email" type="email" placeholder="Email (Optional)" />
 
-      <input id="phone" type="tel" placeholder="Phone Number" required />
+        <!-- Cake Details -->
+        <select id="occasion" required>
+          <option value="">Select Occasion</option>
+          <option>Birthday</option>
+          <option>Graduation</option>
+          <option>Wedding</option>
+          <option>Anniversary</option>
+          <option>Baby Shower</option>
+          <option>Custom</option>
+        </select>
 
-      <input id="email" type="email" placeholder="Email (Optional)" />
+        <select id="flavor" required>
+          <option value="">Choose Flavor</option>
+          <option>Vanilla</option>
+          <option>Chocolate</option>
+          <option>Red Velvet</option>
+          <option>Strawberry</option>
+          <option>Coffee</option>
+          <option>Lemon</option>
+        </select>
 
-      <!-- Cake Details -->
-      <select id="occasion" required>
-        <option value="">Select Occasion</option>
-        <option>Birthday</option>
-        <option>Graduation</option>
-        <option>Wedding</option>
-        <option>Anniversary</option>
-        <option>Baby Shower</option>
-        <option>Custom</option>
-      </select>
+        <select id="size" required>
+          <option value="">Cake Size</option>
+          <option>6 Inch</option>
+          <option>8 Inch</option>
+          <option>10 Inch</option>
+          <option>12 Inch</option>
+          <option>Custom Size</option>
+        </select>
 
-      <select id="flavor" required>
-        <option value="">Choose Flavor</option>
-        <option>Vanilla</option>
-        <option>Chocolate</option>
-        <option>Red Velvet</option>
-        <option>Strawberry</option>
-        <option>Coffee</option>
-        <option>Lemon</option>
-      </select>
+        <!-- Delivery -->
+        <input id="deliveryDate" type="date" required />
+        <input id="deliveryTime" type="time" required />
 
-      <select id="size" required>
-        <option value="">Cake Size</option>
-        <option>6 Inch</option>
-        <option>8 Inch</option>
-        <option>10 Inch</option>
-        <option>12 Inch</option>
-        <option>Custom Size</option>
-      </select>
+        <select id="method" required>
+          <option value="">Pickup or Delivery?</option>
+          <option>Pickup</option>
+          <option>Delivery</option>
+        </select>
 
-      <!-- Delivery -->
-      <input id="deliveryDate" type="date" required />
+        <textarea
+          id="address"
+          rows="3"
+          placeholder="Delivery Address (if delivery is selected)"
+        ></textarea>
 
-      <input id="deliveryTime" type="time" required />
+        <!-- Budget -->
+        <select id="budget">
+          <option value="">Approximate Budget</option>
+          <option>Below 1,000 ETB</option>
+          <option>1,000 - 2,000 ETB</option>
+          <option>2,000 - 3,500 ETB</option>
+          <option>3,500 - 5,000 ETB</option>
+          <option>Above 5,000 ETB</option>
+        </select>
 
-      <select id="method" required>
-        <option value="">Pickup or Delivery?</option>
-        <option>Pickup</option>
-        <option>Delivery</option>
-      </select>
+        <!-- Extra Notes -->
+        <textarea
+          id="notes"
+          rows="5"
+          placeholder="Describe your dream cake, colors, theme, writing on the cake, etc."
+        ></textarea>
 
-      <textarea
-        id="address"
-        rows="3"
-        placeholder="Delivery Address (if delivery is selected)"
-      ></textarea>
+        <button type="submit" class="btn">Place Order</button>
+      </form>
+    </section>
 
-      <!-- Budget -->
-      <select id="budget">
-        <option value="">Approximate Budget</option>
-        <option>Below 1,000 ETB</option>
-        <option>1,000 - 2,000 ETB</option>
-        <option>2,000 - 3,500 ETB</option>
-        <option>3,500 - 5,000 ETB</option>
-        <option>Above 5,000 ETB</option>
-      </select>
-
-      <!-- Extra Notes -->
-      <textarea
-        id="notes"
-        rows="5"
-        placeholder="Describe your dream cake, colors, theme, writing on the cake, etc."
-      ></textarea>
-
-      <button type="submit" class="btn">Place Order</button>
-    </form>
-</section>
     <section class="section reviews">
       <h2>Happy Customers</h2>
       <div class="review-grid">
