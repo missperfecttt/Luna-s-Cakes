@@ -61,7 +61,7 @@ if (cbeBtn) {
 // ================= GOOGLE APPS SCRIPT =================
 // Note: Use the single combined Web App URL for both orders and payments
 const paymentScriptURL =
-  "https://script.google.com/macros/s/AKfycbwqmn9Nc0XUZIvRA92plhaL0-cPhTWqKe7EOfOMXrZo7VmxBqN53B7KuJAmhL90RtFe/exec";
+  "https://script.google.com/macros/s/AKfycbxZmJQAm3qaO68x8Aw6wY8NeSVxVMgB0g3cRxcu0CoxsLeYSH9bMWCS9RyPnj8bBokWzw/exec";
 
 // ================= CLOUDINARY =================
 const cloudinaryURL =
