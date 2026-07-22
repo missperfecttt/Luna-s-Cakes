@@ -15,30 +15,48 @@
 
 <div class="payment-box">
 
+
 <h1>Payment Verification</h1>
 
 
-<h3>Payment Methods</h3>
+<h3>Select Payment Method</h3>
 
 
-<p>
-Telebirr:
-<br>
-0988175522
-</p>
+<div class="payment-options">
 
 
-<p>
-CBE:
-<br>
-Your CBE Account Number Here
-</p>
+<button class="payment-card" id="telebirrBtn">
+
+<img src="telebirr.png">
+
+<p>Telebirr</p>
+
+</button>
 
 
-<hr>
+
+<button class="payment-card" id="cbeBtn">
+
+<img src="cbe.png">
+
+<p>CBE</p>
+
+</button>
 
 
-<h3>Upload Payment Screenshot</h3>
+</div>
+
+
+
+<div id="paymentDetails" class="details">
+
+
+<p>Select a payment method above</p>
+
+
+</div>
+
+
 
 
 <form id="paymentForm">
@@ -51,21 +69,13 @@ placeholder="Full Name"
 required>
 
 
+
 <input 
 id="phone"
 type="tel"
 placeholder="Phone Number"
 required>
 
-
-
-<select id="paymentMethod">
-
-<option>Telebirr</option>
-
-<option>CBE</option>
-
-</select>
 
 
 
@@ -77,15 +87,19 @@ required>
 
 
 
-<button type="submit">
+<button id="submitBtn" type="submit">
+
 Submit Verification
+
 </button>
+
 
 
 </form>
 
 
 </div>
+
 
 
 <script src="payment.js"></script>
