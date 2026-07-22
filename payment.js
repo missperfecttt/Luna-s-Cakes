@@ -1,8 +1,75 @@
 const paymentForm = document.getElementById("paymentForm");
 
+const paymentDetails = document.getElementById("paymentDetails");
+
+let selectedPayment = "";
+
+
+
+document.getElementById("telebirrBtn").onclick = () => {
+
+
+selectedPayment = "Telebirr";
+
+
+paymentDetails.innerHTML = `
+
+<h3>📱 Telebirr Payment</h3>
+
+<p>
+<b>Name:</b> Abigail Mekonnen
+</p>
+
+<p>
+<b>Phone Number:</b> YOUR_TELEBIRR_NUMBER
+</p>
+
+<p>
+After payment, upload the screenshot below.
+</p>
+
+`;
+
+};
+
+
+
+document.getElementById("cbeBtn").onclick = () => {
+
+
+selectedPayment = "CBE";
+
+
+paymentDetails.innerHTML = `
+
+<h3>🏦 Commercial Bank of Ethiopia</h3>
+
+
+<p>
+<b>Account Name:</b> Abigail Mekonnen
+</p>
+
+
+<p>
+<b>Account Number:</b> YOUR_CBE_ACCOUNT
+</p>
+
+
+<p>
+After payment, upload the screenshot below.
+</p>
+
+`;
+
+};
+
+
+
+
 
 const paymentScriptURL =
-"https://script.google.com/macros/s/AKfycbwflRxtcmySNkahi5e4JDCOoorNwolYHMK7x9hhrSPWHDJxRjPdlW_tGDyQnELbfG1M8g/exec";
+"YOUR_PAYMENT_SCRIPT_URL";
+
 
 
 const cloudinaryURL =
@@ -14,6 +81,7 @@ const uploadPreset =
 
 
 
+
 paymentForm.addEventListener("submit", async(e)=>{
 
 
@@ -21,30 +89,40 @@ e.preventDefault();
 
 
 
-let screenshotURL="";
+if(selectedPayment===""){
+
+alert("Please select Telebirr or CBE first.");
+
+return;
+
+}
 
 
 
-const file =
-document.getElementById("paymentScreenshot")
-.files[0];
+const submitBtn =
+document.getElementById("submitBtn");
+
+
+submitBtn.disabled=true;
+
+submitBtn.innerHTML="Uploading Payment...";
+
+submitBtn.classList.add("loading");
 
 
 
 try{
 
 
-if(file){
+const file =
+document.getElementById("paymentScreenshot").files[0];
 
 
-const formData = new FormData();
+
+const formData=new FormData();
 
 
-formData.append(
-"file",
-file
-);
-
+formData.append("file",file);
 
 formData.append(
 "upload_preset",
@@ -64,20 +142,13 @@ body:formData
 
 
 
-const result =
+const image =
 await upload.json();
 
 
 
-screenshotURL =
-result.secure_url;
 
-
-}
-
-
-
-const paymentData = {
+const paymentData={
 
 
 name:
@@ -89,13 +160,15 @@ document.getElementById("phone").value,
 
 
 paymentMethod:
-document.getElementById("paymentMethod").value,
+selectedPayment,
 
 
-screenshotURL:screenshotURL
+screenshotURL:
+image.secure_url
 
 
 };
+
 
 
 
@@ -115,12 +188,19 @@ new URLSearchParams(paymentData)
 
 
 
-const data =
+const result =
 await response.json();
 
 
 
-if(data.result==="success"){
+
+if(result.result==="success"){
+
+
+submitBtn.innerHTML="✅ Submitted Successfully!";
+
+
+submitBtn.classList.add("success");
 
 
 alert(
@@ -128,29 +208,31 @@ alert(
 );
 
 
+
 paymentForm.reset();
 
 
 }
-else{
+
+}
+
+
+
+catch(error){
+
+
+console.log(error);
+
 
 alert(
 "Something went wrong"
 );
 
-}
 
+submitBtn.disabled=false;
 
+submitBtn.innerHTML="Submit Verification";
 
-}
-
-catch(error){
-
-console.log(error);
-
-alert(
-"Error submitting payment"
-);
 
 }
 
