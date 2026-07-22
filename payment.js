@@ -185,25 +185,24 @@ console.log("Screenshot URL:", image.secure_url);
 
 const paymentData={
 
+type:"payment",
+
+orderId:
+localStorage.getItem("orderId"),
 
 name:
 document.getElementById("name").value,
 
-
 phone:
 document.getElementById("phone").value,
-
 
 paymentMethod:
 selectedPayment,
 
-
 screenshotURL:
 image.secure_url
 
-
 };
-
 
 
 
