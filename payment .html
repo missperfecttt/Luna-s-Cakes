@@ -1,129 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Payment - Luna's Cakes</title>
+<title>Payment Verification</title>
 
-    <link rel="stylesheet" href="payment.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="payment.css">
 
 </head>
 
 
 <body>
 
-<header>
-    <h1>🍰 Luna's Cakes</h1>
-</header>
+
+<div class="payment-box">
+
+<h1>Payment Verification</h1>
 
 
-<section class="payment-container">
-
-    <h2>Complete Your Payment</h2>
-
-    <p class="instruction">
-        Please choose your preferred payment method.
-        After payment, upload your payment confirmation screenshot below.
-    </p>
+<h3>Payment Methods</h3>
 
 
-    <div class="payment-methods">
+<p>
+Telebirr:
+<br>
+0988175522
+</p>
 
 
-        <div class="payment-card">
-
-            <h3>Telebirr</h3>
-
-            <p>Phone Number:</p>
-
-            <strong>+251 988175522</strong>
+<p>
+CBE:
+<br>
+Your CBE Account Number Here
+</p>
 
 
-            <button onclick="copyNumber('251988175522')">
-                Copy Number
-            </button>
-
-        </div>
+<hr>
 
 
+<h3>Upload Payment Screenshot</h3>
 
 
-        <div class="payment-card">
-
-            <h3>CBE Bank</h3>
-
-            <p>Account Number:</p>
-
-            <strong>XXXXXXXXXX</strong>
+<form id="paymentForm">
 
 
-            <button onclick="copyNumber('XXXXXXXXXX')">
-                Copy Account
-            </button>
+<input 
+id="name"
+type="text"
+placeholder="Full Name"
+required>
 
-        </div>
+
+<input 
+id="phone"
+type="tel"
+placeholder="Phone Number"
+required>
 
 
 
-    </div>
+<select id="paymentMethod">
+
+<option>Telebirr</option>
+
+<option>CBE</option>
+
+</select>
 
 
 
-    <hr>
+<input 
+id="paymentScreenshot"
+type="file"
+accept="image/*"
+required>
 
 
 
-    <h2>Upload Payment Verification</h2>
+<button type="submit">
+Submit Verification
+</button>
 
 
-    <form id="paymentForm">
+</form>
 
 
-        <label>
-            Your Name
-        </label>
-
-        <input 
-        type="text"
-        id="customerName"
-        placeholder="Enter your name"
-        required>
-
-
-
-        <label>
-            Payment Screenshot
-        </label>
-
-
-        <input 
-        type="file"
-        id="paymentImage"
-        accept="image/*"
-        required>
-
-
-
-        <button class="submit-btn" type="submit">
-            Submit Verification
-        </button>
-
-
-    </form>
-
-
-
-</section>
+</div>
 
 
 <script src="payment.js"></script>
 
 
 </body>
+
 </html>
