@@ -1,161 +1,54 @@
 body{
 
-    margin:0;
-    font-family:'Poppins',sans-serif;
-    background:#fff8fb;
-    color:#444;
+font-family:Poppins, sans-serif;
+
+background:#fff5f8;
 
 }
 
 
-header{
+.payment-box{
 
-    background:#d46a92;
-    padding:20px;
-    text-align:center;
-    color:white;
+max-width:500px;
 
-}
+margin:50px auto;
 
+background:white;
 
-header h1{
+padding:30px;
 
-    font-family:'Great Vibes',cursive;
-    font-size:45px;
+border-radius:20px;
 
-}
-
-
-
-.payment-container{
-
-    max-width:800px;
-    margin:40px auto;
-    padding:30px;
-
-    background:white;
-
-    border-radius:20px;
-
-    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
 
 }
 
 
+input,select,button{
 
-h2{
+width:100%;
 
-    text-align:center;
-    color:#d46a92;
+padding:12px;
 
-}
+margin:10px 0;
 
+border-radius:10px;
 
-
-.instruction{
-
-    text-align:center;
-}
-
-
-
-.payment-methods{
-
-    display:flex;
-    gap:20px;
-
-    justify-content:center;
-
-    flex-wrap:wrap;
+border:1px solid #ddd;
 
 }
-
-
-
-.payment-card{
-
-    width:280px;
-
-    padding:25px;
-
-    border-radius:15px;
-
-    background:#fff0f5;
-
-    text-align:center;
-
-}
-
-
-
-.payment-card h3{
-
-    color:#d46a92;
-
-}
-
 
 
 button{
 
-    background:#d46a92;
+background:#d65f91;
 
-    color:white;
+color:white;
 
-    border:none;
+border:none;
 
-    padding:12px 20px;
+cursor:pointer;
 
-    border-radius:25px;
-
-    cursor:pointer;
-
-}
-
-
-
-button:hover{
-
-    opacity:.8;
-
-}
-
-
-
-form{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:15px;
-
-}
-
-
-
-input{
-
-    padding:15px;
-
-    border-radius:10px;
-
-    border:1px solid #ddd;
-
-}
-
-
-
-.submit-btn{
-
-    margin-top:20px;
-
-}
-
-
-
-hr{
-
-    margin:40px 0;
+font-size:16px;
 
 }
