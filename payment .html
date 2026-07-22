@@ -1,1 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Payment - Luna's Cakes</title>
+
+    <link rel="stylesheet" href="payment.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+<header>
+    <h1>🍰 Luna's Cakes</h1>
+</header>
+
+
+<section class="payment-container">
+
+    <h2>Complete Your Payment</h2>
+
+    <p class="instruction">
+        Please choose your preferred payment method.
+        After payment, upload your payment confirmation screenshot below.
+    </p>
+
+
+    <div class="payment-methods">
+
+
+        <div class="payment-card">
+
+            <h3>Telebirr</h3>
+
+            <p>Phone Number:</p>
+
+            <strong>+251 988175522</strong>
+
+
+            <button onclick="copyNumber('251988175522')">
+                Copy Number
+            </button>
+
+        </div>
+
+
+
+
+        <div class="payment-card">
+
+            <h3>CBE Bank</h3>
+
+            <p>Account Number:</p>
+
+            <strong>XXXXXXXXXX</strong>
+
+
+            <button onclick="copyNumber('XXXXXXXXXX')">
+                Copy Account
+            </button>
+
+        </div>
+
+
+
+    </div>
+
+
+
+    <hr>
+
+
+
+    <h2>Upload Payment Verification</h2>
+
+
+    <form id="paymentForm">
+
+
+        <label>
+            Your Name
+        </label>
+
+        <input 
+        type="text"
+        id="customerName"
+        placeholder="Enter your name"
+        required>
+
+
+
+        <label>
+            Payment Screenshot
+        </label>
+
+
+        <input 
+        type="file"
+        id="paymentImage"
+        accept="image/*"
+        required>
+
+
+
+        <button class="submit-btn" type="submit">
+            Submit Verification
+        </button>
+
+
+    </form>
+
+
+
+</section>
+
+
+<script src="payment.js"></script>
+
+
+</body>
+</html>
