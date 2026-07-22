@@ -2,7 +2,7 @@ const paymentForm = document.getElementById("paymentForm");
 
 
 const paymentScriptURL =
-"PASTE_YOUR_PAYMENT_APPS_SCRIPT_URL_HERE";
+"https://script.google.com/macros/s/AKfycbwflRxtcmySNkahi5e4JDCOoorNwolYHMK7x9hhrSPWHDJxRjPdlW_tGDyQnELbfG1M8g/exec";
 
 
 const cloudinaryURL =
