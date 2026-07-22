@@ -43,15 +43,25 @@ document.querySelectorAll(".section, .card, .review").forEach((el) => {
 
 const orderForm = document.getElementById("orderForm");
 
-// Cloudinary Configuration
-const cloudinaryUrl = "https://api.cloudinary.com/v1_1/xpzpo4yy/image/upload";
+// ================= CLOUDINARY =================
+const cloudinaryUrl =
+  "https://api.cloudinary.com/v1_1/xpzpo4yy/image/upload";
+
 const cloudinaryPreset = "luna_cakes_preset";
 
-// Google Apps Script Web App URL
-const scriptURL = "https://script.google.com/macros/s/AKfycbzIMVfgemHrnlx1GdFpjVuRTNbZoIThFgTEEsEqPi6ZkjBGW0SBTeWFY34dt7o_4p9L/exec";
+// ================= GOOGLE APPS SCRIPT =================
+const scriptURL =
+  "https://script.google.com/macros/s/AKfycbzIMVfgemHrnlx1GdFpjVuRTNbZoIThFgTEEsEqPi6ZkjBGW0SBTeWFY34dt7o_4p9L/exec";
 
+// ================= ORDER FORM =================
 orderForm.addEventListener("submit", async (e) => {
   e.preventDefault();
+
+  // Generate Order ID
+  const orderID =
+    "LC-" +
+    Math.random().toString(36).substring(2, 6).toUpperCase() +
+    Date.now().toString().slice(-4);
 
   const submitButton = orderForm.querySelector("button[type='submit']");
   const fileInput = document.getElementById("referenceImage");
@@ -60,19 +70,20 @@ orderForm.addEventListener("submit", async (e) => {
   try {
     let imageUrl = "";
 
-    // 1. If a reference image was uploaded, send it to Cloudinary first
+    // ================= Upload Cake Image =================
     if (fileInput && fileInput.files && fileInput.files[0]) {
       submitButton.textContent = "Uploading image...";
       submitButton.disabled = true;
 
       const file = fileInput.files[0];
+
       const cloudinaryData = new FormData();
       cloudinaryData.append("file", file);
       cloudinaryData.append("upload_preset", cloudinaryPreset);
 
       const cloudinaryResponse = await fetch(cloudinaryUrl, {
         method: "POST",
-        body: cloudinaryData
+        body: cloudinaryData,
       });
 
       if (!cloudinaryResponse.ok) {
@@ -80,14 +91,17 @@ orderForm.addEventListener("submit", async (e) => {
       }
 
       const cloudinaryResult = await cloudinaryResponse.json();
+
       imageUrl = cloudinaryResult.secure_url;
     }
 
-    // 2. Submit order data (including image URL) to Google Sheets
+    // ================= Prepare Order =================
     submitButton.textContent = "Placing order...";
     submitButton.disabled = true;
 
     const orderData = {
+      orderID: orderID,
+
       name: document.getElementById("name").value,
       phone: document.getElementById("phone").value,
       email: document.getElementById("email").value,
@@ -100,25 +114,33 @@ orderForm.addEventListener("submit", async (e) => {
       address: document.getElementById("address").value,
       budget: document.getElementById("budget").value,
       notes: document.getElementById("notes").value,
-      imageUrl: imageUrl
+      imageUrl: imageUrl,
     };
 
+    console.log("Order Data:", orderData);
+
+    // ================= Send Order =================
     const response = await fetch(scriptURL, {
       method: "POST",
-      body: new URLSearchParams(orderData)
+      body: new URLSearchParams(orderData),
     });
 
     const result = await response.json();
 
+    console.log("Apps Script Response:", result);
+
     if (result.result === "success") {
-      alert("🎉 Thank you! Your order has been submitted.");
       orderForm.reset();
+
+      // Redirect to payment page
+      window.location.href =
+        "payment.html?order=" + encodeURIComponent(orderID);
     } else {
       alert("There was an issue submitting your order. Please try again.");
     }
   } catch (error) {
-    alert("Something went wrong. Please try again.");
     console.error(error);
+    alert("Something went wrong. Please try again.");
   } finally {
     submitButton.textContent = originalButtonText;
     submitButton.disabled = false;
