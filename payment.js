@@ -5,71 +5,73 @@ const paymentDetails = document.getElementById("paymentDetails");
 let selectedPayment = "";
 
 
+// ================= TELEBIRR =================
 
 document.getElementById("telebirrBtn").onclick = () => {
 
+    selectedPayment = "Telebirr";
 
-selectedPayment = "Telebirr";
+    paymentDetails.innerHTML = `
 
+    <h3>📱 Telebirr Payment</h3>
 
-paymentDetails.innerHTML = `
+    <p>
+    <b>Name:</b> Abigail Mekonnen
+    </p>
 
-<h3>📱 Telebirr Payment</h3>
+    <p>
+    <b>Phone Number:</b> +251988175522
+    </p>
 
-<p>
-<b>Name:</b> Abigail Mekonnen
-</p>
+    <p>
+    After payment, upload the screenshot below.
+    </p>
 
-<p>
-<b>Phone Number:</b> +251988175522
-</p>
-
-<p>
-After payment, upload the screenshot below.
-</p>
-
-`;
+    `;
 
 };
 
+
+
+// ================= CBE =================
 
 
 document.getElementById("cbeBtn").onclick = () => {
 
+    selectedPayment = "CBE";
 
-selectedPayment = "CBE";
+    paymentDetails.innerHTML = `
 
+    <h3>🏦 Commercial Bank of Ethiopia</h3>
 
-paymentDetails.innerHTML = `
+    <p>
+    <b>Account Name:</b> Abigail Mekonnen
+    </p>
 
-<h3>🏦 Commercial Bank of Ethiopia</h3>
+    <p>
+    <b>Account Number:</b> 1000452634388
+    </p>
 
+    <p>
+    After payment, upload the screenshot below.
+    </p>
 
-<p>
-<b>Account Name:</b> Abigail Mekonnen
-</p>
-
-
-<p>
-<b>Account Number:</b> 1000452634388
-</p>
-
-
-<p>
-After payment, upload the screenshot below.
-</p>
-
-`;
+    `;
 
 };
 
 
 
+// ================= GOOGLE APPS SCRIPT =================
 
 
 const paymentScriptURL =
-"YOUR_PAYMENT_SCRIPT_URL";
+"https://script.google.com/macros/s/AKfycbwflRxtcmySNkahi5e4JDCOoorNwolYHMK7x9hhrSPWHDJxRjPdlW_tGDyQnELbfG1M8g/exec";
 
+
+
+
+// ================= CLOUDINARY =================
 
 
 const cloudinaryURL =
@@ -80,6 +82,10 @@ const uploadPreset =
 "lunascakes_upload";
 
 
+
+
+
+// ================= SUBMIT =================
 
 
 paymentForm.addEventListener("submit", async(e)=>{
@@ -99,8 +105,24 @@ return;
 
 
 
+const file =
+document.getElementById("paymentScreenshot").files[0];
+
+
+
+if(!file){
+
+alert("Please upload your payment screenshot.");
+
+return;
+
+}
+
+
+
 const submitBtn =
 document.getElementById("submitBtn");
+
 
 
 submitBtn.disabled=true;
@@ -114,9 +136,7 @@ submitBtn.classList.add("loading");
 try{
 
 
-const file =
-document.getElementById("paymentScreenshot").files[0];
-
+// Upload screenshot to Cloudinary
 
 
 const formData=new FormData();
@@ -131,7 +151,7 @@ uploadPreset
 
 
 
-const upload =
+const uploadResponse =
 await fetch(
 cloudinaryURL,
 {
@@ -143,9 +163,24 @@ body:formData
 
 
 const image =
-await upload.json();
+await uploadResponse.json();
 
 
+
+if(!image.secure_url){
+
+throw new Error("Image upload failed");
+
+}
+
+
+
+console.log("Screenshot URL:", image.secure_url);
+
+
+
+
+// Send verification data to Google Sheets
 
 
 const paymentData={
@@ -172,6 +207,10 @@ image.secure_url
 
 
 
+console.log("Sending payment data:", paymentData);
+
+
+
 const response =
 await fetch(
 paymentScriptURL,
@@ -188,8 +227,22 @@ new URLSearchParams(paymentData)
 
 
 
+console.log(
+"Google Script Status:",
+response.status
+);
+
+
+
 const result =
 await response.json();
+
+
+
+console.log(
+"Google Script Response:",
+result
+);
 
 
 
@@ -197,10 +250,13 @@ await response.json();
 if(result.result==="success"){
 
 
-submitBtn.innerHTML="✅ Submitted Successfully!";
+
+submitBtn.innerHTML=
+"✅ Submitted Successfully!";
 
 
 submitBtn.classList.add("success");
+
 
 
 alert(
@@ -212,7 +268,24 @@ alert(
 paymentForm.reset();
 
 
+
+selectedPayment="";
+
+
+
 }
+
+else{
+
+
+throw new Error(
+"Google Script returned error"
+);
+
+
+}
+
+
 
 }
 
@@ -221,20 +294,29 @@ paymentForm.reset();
 catch(error){
 
 
-console.log(error);
+console.error(
+"FULL ERROR:",
+error
+);
+
 
 
 alert(
-"Something went wrong"
+"Something went wrong. Please try again."
 );
+
 
 
 submitBtn.disabled=false;
 
-submitBtn.innerHTML="Submit Verification";
+submitBtn.innerHTML=
+"Submit Verification";
+
+submitBtn.classList.remove("loading");
 
 
 }
+
 
 
 });
