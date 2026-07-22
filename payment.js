@@ -21,7 +21,7 @@ paymentDetails.innerHTML = `
 </p>
 
 <p>
-<b>Phone Number:</b> YOUR_TELEBIRR_NUMBER
+<b>Phone Number:</b> +251988175522
 </p>
 
 <p>
@@ -51,7 +51,7 @@ paymentDetails.innerHTML = `
 
 
 <p>
-<b>Account Number:</b> YOUR_CBE_ACCOUNT
+<b>Account Number:</b> 1000452634388
 </p>
 
 
