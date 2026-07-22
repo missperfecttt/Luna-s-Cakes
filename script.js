@@ -51,7 +51,7 @@ const cloudinaryPreset = "luna_cakes_preset";
 
 // ================= GOOGLE APPS SCRIPT =================
 const scriptURL =
-  "https://script.google.com/macros/s/AKfycbzIMVfgemHrnlx1GdFpjVuRTNbZoIThFgTEEsEqPi6ZkjBGW0SBTeWFY34dt7o_4p9L/exec";
+  "https://script.google.com/macros/s/AKfycbwqmn9Nc0XUZIvRA92plhaL0-cPhTWqKe7EOfOMXrZo7VmxBqN53B7KuJAmhL90RtFe/exec";
 
 // ================= ORDER FORM =================
 orderForm.addEventListener("submit", async (e) => {
