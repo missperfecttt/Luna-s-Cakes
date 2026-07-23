@@ -20,10 +20,12 @@
 
     <!-- Main Header -->
     <header class="header">
-      <div class="logo">
-        <span class="logo-icon">🍰</span>
-        <div class="logo-text">Luna's Cakes</div>
-      </div>
+     <div class="logo">
+  <!-- Image logo with automatic emoji fallback if image is missing -->
+  <img src="logo.jpg" alt="Luna's Cakes Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
+  <span class="logo-icon" style="display: none;">🍰</span>
+  <div class="logo-text">Family Bakery</div>
+</div>
       <button class="menu-btn" id="menuBtn" aria-label="Toggle Navigation">☰</button>
     </header>
 
