@@ -3,68 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Payment Verification - Luna's Cakes</title>
+  <title>Payment Verification — Luna's Cakes Checkout</title>
   <link rel="stylesheet" href="payment.css">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
   />
 </head>
 <body>
 
-  <div class="payment-box">
-    <h1>Payment Verification</h1>
-    <div id="orderIdBadge" class="order-id-badge" style="display: none;"></div>
+  <div class="payment-page-container">
+    <div class="payment-box">
+      <!-- Checkout Brand Header -->
+      <div class="payment-header">
+        <span class="brand-pill">Checkout & Verification Portal</span>
+        <h1>Payment Verification</h1>
+        <div id="orderIdBadge" class="order-id-badge" style="display: none;"></div>
+        <p class="header-subtitle">Select your payment method below and submit your receipt screenshot to initiate fulfillment.</p>
+      </div>
 
-    <h3>Select Payment Method</h3>
+      <!-- Payment Method Selection -->
+      <div class="payment-step-section">
+        <h3>STEP 1: Select Payment Gateway</h3>
+        <div class="payment-options">
+          <button class="payment-card" id="telebirrBtn" type="button">
+            <img src="Telebirr Logo.jpg" alt="Telebirr Logo" class="payment-logo" onerror="this.style.display='none'; this.nextElementSibling.innerHTML='📱 Telebirr';">
+            <p>Telebirr</p>
+          </button>
 
-    <div class="payment-options">
-      <button class="payment-card" id="telebirrBtn" type="button">
-        <!-- Change "Telebirr Logo.jpg" to match your exact image file name or URL -->
-        <img src="Telebirr Logo.jpg" alt="Telebirr Logo" class="payment-logo" onerror="this.style.display='none'; this.nextElementSibling.innerHTML='📱 Telebirr';">
-        <p>Telebirr</p>
-      </button>
+          <button class="payment-card" id="cbeBtn" type="button">
+            <img src="CBE Logo.jpg" alt="CBE Logo" class="payment-logo" onerror="this.style.display='none'; this.nextElementSibling.innerHTML='🏦 CBE';">
+            <p>CBE</p>
+          </button>
+        </div>
+      </div>
 
-      <button class="payment-card" id="cbeBtn" type="button">
-        <!-- Change "CBE Logo.jpg" to match your exact image file name or URL -->
-        <img src="CBE Logo.jpg" alt="CBE Logo" class="payment-logo" onerror="this.style.display='none'; this.nextElementSibling.innerHTML='🏦 CBE';">
-        <p>CBE</p>
-      </button>
+      <!-- Payment Details Box -->
+      <div id="paymentDetails" class="details">
+        <p>Select Telebirr or CBE above to reveal specific account instructions.</p>
+      </div>
+
+      <!-- Verification Form -->
+      <form id="paymentForm" class="payment-form">
+        <h3>STEP 2: Verification Details</h3>
+
+        <div class="input-wrapper">
+          <label for="name">Full Name *</label>
+          <input 
+            id="name"
+            type="text"
+            placeholder="Full Name used during order"
+            required
+          />
+        </div>
+
+        <div class="input-wrapper">
+          <label for="phone">Phone Number *</label>
+          <input 
+            id="phone"
+            type="tel"
+            placeholder="Phone Number used during order"
+            required
+          />
+        </div>
+
+        <div class="input-wrapper file-upload-wrapper">
+          <label for="paymentScreenshot">Upload Payment Receipt Screenshot *</label>
+          <div class="custom-file-input">
+            <input 
+              id="paymentScreenshot"
+              type="file"
+              accept="image/*"
+              required
+            />
+            <span class="file-hint">📄 Tap to upload payment receipt screenshot</span>
+          </div>
+        </div>
+
+        <button id="submitBtn" type="submit" class="btn-submit">
+          Submit Payment Verification →
+        </button>
+      </form>
     </div>
-
-    <div id="paymentDetails" class="details">
-      <p>Select a payment method above to view payment instructions.</p>
-    </div>
-
-    <form id="paymentForm">
-      <input 
-        id="name"
-        type="text"
-        placeholder="Full Name"
-        required
-      />
-
-      <input 
-        id="phone"
-        type="tel"
-        placeholder="Phone Number"
-        required
-      />
-
-      <label for="paymentScreenshot">Upload Payment Screenshot</label>
-      <input 
-        id="paymentScreenshot"
-        type="file"
-        accept="image/*"
-        required
-      />
-
-      <button id="submitBtn" type="submit">
-        Submit Verification
-      </button>
-    </form>
   </div>
 
   <script src="payment.js"></script>
