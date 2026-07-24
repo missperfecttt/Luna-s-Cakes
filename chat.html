@@ -4,42 +4,43 @@
 
 <div id="chatWindow">
 
-    <div class="chatHeader">
+    <div id="chatHeader">
         🍰 Luna's Cake Assistant
+        <span id="closeChat">✖</span>
     </div>
 
-    <div class="chatBody" id="chatBody">
+    <div id="chatMessages">
 
-        <div class="botMessage">
-            Hello 👋
+        <div class="bot">
+            👋 Hello!
 
-            Welcome to Luna's Cakes!
+            <br><br>
 
-            Ask me something like:
+            I'm Luna's Cake Assistant.
 
-            • Prices
+            <br><br>
 
-            • Delivery
+            Ask me things like:
 
-            • Flavors
-
-            • Ordering
-
-            • Payment
+            <br>• Cake prices
+            <br>• Delivery
+            <br>• Flavors
+            <br>• Payment
+            <br>• Working hours
         </div>
 
     </div>
 
-    <div class="chatInputArea">
+    <div id="chatInputArea">
 
         <input
             type="text"
             id="chatInput"
-            placeholder="Type your question..."
+            placeholder="Ask me anything..."
         >
 
         <button id="sendBtn">
-            Send
+            ➤
         </button>
 
     </div>
