@@ -32,4 +32,10 @@ transition:.3s;
 
 z-index:9999;
 
+#chatButton:hover{
+
+transform:scale(1.1);
+
+background:#ff5da8;
+
 }
