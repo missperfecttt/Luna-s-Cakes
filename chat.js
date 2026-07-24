@@ -1,127 +1,113 @@
-console.log("Chat.js Loaded!");
+const chatButton=document.getElementById("chatButton");
 
-const chatButton = document.getElementById("chatButton");
-const chatWindow = document.getElementById("chatWindow");
+const chatWindow=document.getElementById("chatWindow");
 
-const chatInput = document.getElementById("chatInput");
-const sendBtn = document.getElementById("sendBtn");
-const chatBody = document.getElementById("chatBody");
+const closeChat=document.getElementById("closeChat");
 
-// Open / Close
-chatButton.addEventListener("click", () => {
+const chatMessages=document.getElementById("chatMessages");
 
-    if(chatWindow.style.display==="flex"){
+const chatInput=document.getElementById("chatInput");
 
-        chatWindow.style.display="none";
+const sendBtn=document.getElementById("sendBtn");
 
-    }
+chatButton.onclick=()=>{
 
-    else{
+chatWindow.style.display="block";
 
-        chatWindow.style.display="flex";
+};
 
-    }
+closeChat.onclick=()=>{
+
+chatWindow.style.display="none";
+
+};
+
+function addMessage(text,type){
+
+const div=document.createElement("div");
+
+div.className=type;
+
+div.innerHTML=text;
+
+chatMessages.appendChild(div);
+
+chatMessages.scrollTop=chatMessages.scrollHeight;
+
+}
+
+function botReply(message){
+
+message=message.toLowerCase();
+
+let reply="Sorry, I don't understand.<br><br>Try asking about prices, payment, delivery or flavors.";
+
+if(message.includes("price")||message.includes("cost")){
+
+reply="Our cakes start from <b>1000 ETB</b> depending on the size and design.";
+
+}
+
+else if(message.includes("delivery")){
+
+reply="Yes 😊 We deliver throughout Addis Ababa.";
+
+}
+
+else if(message.includes("payment")){
+
+reply="You can pay using <b>Telebirr</b> or <b>CBE</b> after placing your order.";
+
+}
+
+else if(message.includes("flavor")){
+
+reply="Popular flavors include Vanilla, Chocolate, Red Velvet, Strawberry and Lemon.";
+
+}
+
+else if(message.includes("hour")){
+
+reply="We accept orders 24/7 through the website.";
+
+}
+
+else if(message.includes("hello")||message.includes("hi")){
+
+reply="Hello 👋 Welcome to Luna's Cakes!";
+
+}
+
+setTimeout(()=>{
+
+addMessage(reply,"bot");
+
+},500);
+
+}
+
+function sendMessage(){
+
+const text=chatInput.value.trim();
+
+if(text==="")return;
+
+addMessage(text,"user");
+
+chatInput.value="";
+
+botReply(text);
+
+}
+
+sendBtn.onclick=sendMessage;
+
+chatInput.addEventListener("keypress",function(e){
+
+if(e.key==="Enter"){
+
+sendMessage();
+
+}
 
 });
-
-sendBtn.addEventListener("click", answerQuestion);
-
-chatInput.addEventListener("keypress",(e)=>{
-
-    if(e.key==="Enter"){
-
-        answerQuestion();
-
-    }
-
-});
-
-function answerQuestion(){
-
-    const question=chatInput.value.toLowerCase().trim();
-
-    if(question==="") return;
-
-    addUser(question);
-
-    let answer="Sorry, I don't understand that yet.";
-
-    if(question.includes("price") || question.includes("cost")){
-
-        answer="Our cakes usually start from around 1,000 ETB. Custom cakes may cost more depending on the design.";
-
-    }
-
-    else if(question.includes("delivery")){
-
-        answer="Yes! We deliver inside Addis Ababa. Delivery fee depends on your location.";
-
-    }
-
-    else if(question.includes("pickup")){
-
-        answer="Yes. You can choose Pickup while placing your order.";
-
-    }
-
-    else if(question.includes("payment")){
-
-        answer="We currently accept Telebirr and Commercial Bank of Ethiopia (CBE).";
-
-    }
-
-    else if(question.includes("flavor")){
-
-        answer="We offer Vanilla, Chocolate, Red Velvet, Strawberry, Coffee and Lemon.";
-
-    }
-
-    else if(question.includes("order")){
-
-        answer="Fill the Order Form, submit it, then proceed to the payment page.";
-
-    }
-
-    else if(question.includes("hello") || question.includes("hi")){
-
-        answer="Hello 😊 How can I help you today?";
-
-    }
-
-    addBot(answer);
-
-    chatInput.value="";
-
-}
-
-function addUser(text){
-
-    chatBody.innerHTML+=`
-
-    <div class="userMessage">
-
-        ${text}
-
-    </div>
-
-    `;
-
-    chatBody.scrollTop=chatBody.scrollHeight;
-
-}
-
-function addBot(text){
-
-    chatBody.innerHTML+=`
-
-    <div class="botMessage">
-
-        ${text}
-
-    </div>
-
-    `;
-
-    chatBody.scrollTop=chatBody.scrollHeight;
-
-}
