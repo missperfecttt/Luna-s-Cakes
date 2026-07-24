@@ -1,17 +1,17 @@
-const chatButton = document.getElementById("chatButton");
+console.log("Chat.js loaded!");
 
+const chatButton = document.getElementById("chatButton");
 const chatWindow = document.getElementById("chatWindow");
 
-chatButton.onclick = () => {
+console.log(chatButton);
+console.log(chatWindow);
 
-if(chatWindow.style.display==="block"){
+chatButton.addEventListener("click", () => {
+    alert("Chat button clicked!");
 
-chatWindow.style.display="none";
-
-}else{
-
-chatWindow.style.display="block";
-
-}
-
-};
+    if (chatWindow.style.display === "block") {
+        chatWindow.style.display = "none";
+    } else {
+        chatWindow.style.display = "block";
+    }
+});
