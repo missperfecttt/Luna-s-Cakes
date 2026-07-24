@@ -2,6 +2,9 @@ console.log("Chat.js loaded!");
 
 const chatButton = document.getElementById("chatButton");
 const chatWindow = document.getElementById("chatWindow");
+chatButton.addEventListener("click", () => {
+    alert("Chat button clicked!");
+});
 
 console.log(chatButton);
 console.log(chatWindow);
