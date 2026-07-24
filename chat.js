@@ -1,24 +1,22 @@
-console.log("Chat.js loaded!");
+console.log("Chat.js Loaded!");
 
 const chatButton = document.getElementById("chatButton");
 const chatWindow = document.getElementById("chatWindow");
 
+const chatInput = document.getElementById("chatInput");
 const sendBtn = document.getElementById("sendBtn");
-const userInput = document.getElementById("userInput");
-const chatMessages = document.getElementById("chatMessages");
+const chatBody = document.getElementById("chatBody");
 
-console.log(chatButton);
-console.log(chatWindow);
-
-// Open / Close Chat
-
+// Open / Close
 chatButton.addEventListener("click", () => {
 
     if(chatWindow.style.display==="flex"){
 
         chatWindow.style.display="none";
 
-    }else{
+    }
+
+    else{
 
         chatWindow.style.display="flex";
 
@@ -26,100 +24,104 @@ chatButton.addEventListener("click", () => {
 
 });
 
-// Send Message
+sendBtn.addEventListener("click", answerQuestion);
 
-sendBtn.addEventListener("click", sendMessage);
-
-userInput.addEventListener("keypress",(e)=>{
+chatInput.addEventListener("keypress",(e)=>{
 
     if(e.key==="Enter"){
 
-        sendMessage();
+        answerQuestion();
 
     }
 
 });
 
-function sendMessage(){
+function answerQuestion(){
 
-    const text=userInput.value.trim();
+    const question=chatInput.value.toLowerCase().trim();
 
-    if(text==="") return;
+    if(question==="") return;
 
-    addUserMessage(text);
+    addUser(question);
 
-    userInput.value="";
+    let answer="Sorry, I don't understand that yet.";
 
-    setTimeout(()=>{
+    if(question.includes("price") || question.includes("cost")){
 
-        addBotReply(text);
-
-    },500);
-
-}
-
-function addUserMessage(text){
-
-    chatMessages.innerHTML+=`
-
-        <div class="user-message">
-
-            ${text}
-
-        </div>
-
-    `;
-
-    chatMessages.scrollTop=chatMessages.scrollHeight;
-
-}
-
-function addBotReply(question){
-
-    question=question.toLowerCase();
-
-    let reply="Sorry, I don't understand that yet.";
-
-    if(question.includes("price")){
-
-        reply="Prices depend on the cake size and design. Please place an order and we'll provide a quotation.";
+        answer="Our cakes usually start from around 1,000 ETB. Custom cakes may cost more depending on the design.";
 
     }
 
     else if(question.includes("delivery")){
 
-        reply="We provide delivery within Addis Ababa. Delivery charges depend on the location.";
+        answer="Yes! We deliver inside Addis Ababa. Delivery fee depends on your location.";
+
+    }
+
+    else if(question.includes("pickup")){
+
+        answer="Yes. You can choose Pickup while placing your order.";
 
     }
 
     else if(question.includes("payment")){
 
-        reply="We currently accept Telebirr and Commercial Bank of Ethiopia.";
+        answer="We currently accept Telebirr and Commercial Bank of Ethiopia (CBE).";
 
     }
 
-    else if(question.includes("flavour") || question.includes("flavor")){
+    else if(question.includes("flavor")){
 
-        reply="Available flavours include Vanilla, Chocolate, Red Velvet and more.";
+        answer="We offer Vanilla, Chocolate, Red Velvet, Strawberry, Coffee and Lemon.";
+
+    }
+
+    else if(question.includes("order")){
+
+        answer="Fill the Order Form, submit it, then proceed to the payment page.";
 
     }
 
     else if(question.includes("hello") || question.includes("hi")){
 
-        reply="Hello! 👋 Welcome to Luna's Cakes.";
+        answer="Hello 😊 How can I help you today?";
 
     }
 
-    chatMessages.innerHTML+=`
+    addBot(answer);
 
-        <div class="bot-message">
+    chatInput.value="";
 
-            ${reply}
+}
 
-        </div>
+function addUser(text){
+
+    chatBody.innerHTML+=`
+
+    <div class="userMessage">
+
+        ${text}
+
+    </div>
 
     `;
 
-    chatMessages.scrollTop=chatMessages.scrollHeight;
+    chatBody.scrollTop=chatBody.scrollHeight;
+
+}
+
+function addBot(text){
+
+    chatBody.innerHTML+=`
+
+    <div class="botMessage">
+
+        ${text}
+
+    </div>
+
+    `;
+
+    chatBody.scrollTop=chatBody.scrollHeight;
 
 }
