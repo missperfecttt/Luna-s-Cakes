@@ -61,9 +61,6 @@ const orderForm = document.getElementById("orderForm");
 const cloudinaryUrl = "https://api.cloudinary.com/v1_1/xpzpo4yy/image/upload";
 const cloudinaryPreset = "lunascakes_upload";
 
-// Replace with your current Google Apps Script Exec Web App URL
-const scriptURL = "https://script.google.com/macros/s/AKfycbw0IbnBuVql2EMe5DAqukZqRs9yZPqkQ4SFJ6PZdHO8EFO-cMBgdm3Ms0JpbqzduDIyPQ/exec";
-
 // ================= ORDER FORM SUBMIT =================
 if (orderForm) {
   orderForm.addEventListener("submit", async (e) => {
@@ -83,7 +80,7 @@ if (orderForm) {
     try {
       let imageUrl = "";
 
-      // 2. Upload Image to Cloudinary (If attached)
+      // 2. Upload Reference Image to Cloudinary (If attached)
       if (fileInput && fileInput.files && fileInput.files[0]) {
         if (submitButton) {
           submitButton.textContent = "Uploading image...";
@@ -104,22 +101,14 @@ if (orderForm) {
           if (cloudinaryResponse.ok) {
             const cloudinaryResult = await cloudinaryResponse.json();
             imageUrl = cloudinaryResult.secure_url || "";
-          } else {
-            console.warn("Cloudinary upload failed, continuing order without image...");
           }
         } catch (imgErr) {
           console.error("Cloudinary error:", imgErr);
-          // Continue processing order even if image upload fails
         }
       }
 
-      // 3. Prepare Order Payload
-      if (submitButton) {
-        submitButton.textContent = "Placing order...";
-        submitButton.disabled = true;
-      }
-
-      const orderData = {
+      // 3. Save Order Details Temporarily in Browser Storage
+      const pendingOrder = {
         name: sanitizeInput(document.getElementById("name").value.trim()),
         phone: sanitizeInput(document.getElementById("phone").value.trim()),
         email: sanitizeInput(document.getElementById("email") ? document.getElementById("email").value.trim() : ""),
@@ -135,34 +124,14 @@ if (orderForm) {
         imageUrl: imageUrl
       };
 
-      // 4. Send Data to Google Apps Script
-      const formData = new URLSearchParams();
-      for (const key in orderData) {
-        formData.append(key, orderData[key]);
-      }
+      localStorage.setItem("pendingOrder", JSON.stringify(pendingOrder));
 
-      const response = await fetch(scriptURL, {
-        method: "POST",
-        body: formData,
-      });
-
-      const result = await response.json();
-
-      if (result.result === "success") {
-        alert("🎉 Order submitted successfully!\n\nYour Order ID is: " + result.orderId);
-        
-        localStorage.setItem("orderId", result.orderId);
-        localStorage.setItem("customerName", orderData.name);
-        localStorage.setItem("customerPhone", orderData.phone);
-
-        window.location.href = "payment.html";
-      } else {
-        throw new Error(result.error || "Failed to process order.");
-      }
+      // Redirect directly to payment page
+      window.location.href = "payment.html";
 
     } catch (error) {
-      console.error("Order Submission Error:", error);
-      alert("⚠️ Order Notice: " + error.message);
+      console.error("Submission Error:", error);
+      alert("⚠️ Notice: " + error.message);
     } finally {
       if (submitButton) {
         submitButton.disabled = false;
