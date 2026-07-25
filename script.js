@@ -66,7 +66,7 @@ const cloudinaryPreset = "lunascakes_upload";
 
 // ================= GOOGLE APPS SCRIPT =================
 const scriptURL =
-  "https://script.google.com/macros/s/AKfycbxZmJQAm3qaO68x8Aw6wY8NeSVxVMgB0g3cRxcu0CoxsLeYSH9bMWCS9RyPnj8bBokWzw/exec";
+  "https://script.google.com/macros/s/AKfycby2qAX5ZVksqre_YHPav7zuZ_VVi38dc6_0aSWF6PWUW9zq5KEFjDW6h10EJUM7mCGVfQ/exec";
 
 // ================= ORDER FORM SUBMIT =================
 if (orderForm) {
