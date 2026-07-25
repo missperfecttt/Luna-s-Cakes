@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const paymentForm = document.getElementById("paymentForm");
 
   // Replace with your current Google Apps Script Exec Web App URL
-  const scriptURL = "https://script.google.com/macros/s/AKfycbwGjeKjbvwUdFYW4_fjRcMQY_xJdiUJmf0RcGgUbGYl7VeaLZWT3iYES35CrG1deIft4A/exec";
+  const scriptURL = "https://script.google.com/macros/s/AKfycbyGWqGNMa7BbM8PnZNsKF6GErNVxiWFYvbFocheSQMcUpL5ieVgprm3xgXFGxlyLtQEcg/exec";
   const cloudinaryUrl = "https://api.cloudinary.com/v1_1/xpzpo4yy/image/upload";
   const cloudinaryPreset = "lunascakes_upload";
 
