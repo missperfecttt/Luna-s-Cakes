@@ -45,7 +45,6 @@ document.querySelectorAll(".section, .card, .review").forEach((el) => {
 });
 
 // ================= INPUT SANITIZATION =================
-// Sanitizes input strings to prevent cross-site scripting (XSS) / injection
 function sanitizeInput(str) {
   if (!str) return "";
   return String(str)
@@ -58,22 +57,19 @@ function sanitizeInput(str) {
 
 const orderForm = document.getElementById("orderForm");
 
-// ================= CLOUDINARY =================
-const cloudinaryUrl =
-  "https://api.cloudinary.com/v1_1/xpzpo4yy/image/upload";
-
+// ================= ENDPOINTS =================
+const cloudinaryUrl = "https://api.cloudinary.com/v1_1/xpzpo4yy/image/upload";
 const cloudinaryPreset = "lunascakes_upload";
 
-// ================= GOOGLE APPS SCRIPT =================
-const scriptURL =
-  "https://script.google.com/macros/s/AKfycby2qAX5ZVksqre_YHPav7zuZ_VVi38dc6_0aSWF6PWUW9zq5KEFjDW6h10EJUM7mCGVfQ/exec";
+// Replace with your current Google Apps Script Exec Web App URL
+const scriptURL = "https://script.google.com/macros/s/AKfycbxZmJQAm3qaO68x8Aw6wY8NeSVxVMgB0g3cRxcu0CoxsLeYSH9bMWCS9RyPnj8bBokWzw/exec";
 
 // ================= ORDER FORM SUBMIT =================
 if (orderForm) {
   orderForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // 1. Anti-Spam Check: Ensure Cloudflare Turnstile token exists
+    // 1. Anti-Spam Check
     const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]')?.value;
     if (!turnstileResponse) {
       alert("⚠️ Please complete the security verification check before submitting your order.");
@@ -87,7 +83,7 @@ if (orderForm) {
     try {
       let imageUrl = "";
 
-      // ================= Upload Cake Image (if selected) =================
+      // 2. Upload Image to Cloudinary (If attached)
       if (fileInput && fileInput.files && fileInput.files[0]) {
         if (submitButton) {
           submitButton.textContent = "Uploading image...";
@@ -99,20 +95,25 @@ if (orderForm) {
         cloudinaryData.append("file", file);
         cloudinaryData.append("upload_preset", cloudinaryPreset);
 
-        const cloudinaryResponse = await fetch(cloudinaryUrl, {
-          method: "POST",
-          body: cloudinaryData,
-        });
+        try {
+          const cloudinaryResponse = await fetch(cloudinaryUrl, {
+            method: "POST",
+            body: cloudinaryData,
+          });
 
-        if (!cloudinaryResponse.ok) {
-          throw new Error("Failed to upload image to Cloudinary");
+          if (cloudinaryResponse.ok) {
+            const cloudinaryResult = await cloudinaryResponse.json();
+            imageUrl = cloudinaryResult.secure_url || "";
+          } else {
+            console.warn("Cloudinary upload failed, continuing order without image...");
+          }
+        } catch (imgErr) {
+          console.error("Cloudinary error:", imgErr);
+          // Continue processing order even if image upload fails
         }
-
-        const cloudinaryResult = await cloudinaryResponse.json();
-        imageUrl = cloudinaryResult.secure_url || "";
       }
 
-      // ================= Prepare Sanitized Order Data =================
+      // 3. Prepare Order Payload
       if (submitButton) {
         submitButton.textContent = "Placing order...";
         submitButton.disabled = true;
@@ -131,44 +132,37 @@ if (orderForm) {
         address: sanitizeInput(document.getElementById("address") ? document.getElementById("address").value.trim() : ""),
         budget: document.getElementById("budget") ? document.getElementById("budget").value : "",
         notes: sanitizeInput(document.getElementById("notes") ? document.getElementById("notes").value.trim() : ""),
-        imageUrl: imageUrl,
-        "cf-turnstile-response": turnstileResponse
+        imageUrl: imageUrl
       };
 
-      console.log("Sending Order Data:", orderData);
-
-      // ================= Send Order to Apps Script =================
-      const response = await fetch(scriptURL, {
-        method: "POST",
-        body: new URLSearchParams(orderData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Server responded with error status: " + response.status);
+      // 4. Send Data to Google Apps Script
+      const formData = new URLSearchParams();
+      for (const key in orderData) {
+        formData.append(key, orderData[key]);
       }
 
+      const response = await fetch(scriptURL, {
+        method: "POST",
+        body: formData,
+      });
+
       const result = await response.json();
-      console.log("Google Apps Script Result:", result);
 
       if (result.result === "success") {
         alert("🎉 Order submitted successfully!\n\nYour Order ID is: " + result.orderId);
         
-        // Save Order ID for payment page
         localStorage.setItem("orderId", result.orderId);
-
-        // Save customer contact info for convenience on payment page
         localStorage.setItem("customerName", orderData.name);
         localStorage.setItem("customerPhone", orderData.phone);
 
-        // Redirect to Payment Verification page
         window.location.href = "payment.html";
       } else {
-        throw new Error(result.error || "Server returned failure result");
+        throw new Error(result.error || "Failed to process order.");
       }
 
     } catch (error) {
       console.error("Order Submission Error:", error);
-      alert("⚠️ Something went wrong while submitting your order: " + error.message);
+      alert("⚠️ Order Notice: " + error.message);
     } finally {
       if (submitButton) {
         submitButton.disabled = false;
