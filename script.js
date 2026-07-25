@@ -62,7 +62,7 @@ const cloudinaryUrl = "https://api.cloudinary.com/v1_1/xpzpo4yy/image/upload";
 const cloudinaryPreset = "lunascakes_upload";
 
 // Replace with your current Google Apps Script Exec Web App URL
-const scriptURL = "https://script.google.com/macros/s/AKfycbw_pKNlALnAtub6bjVr9n9Voib75zhyZQTBXS1lz07k7JHsZsHj-6FQCaIVcd-RpAk17A/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbwmwEByTPm7nCAX7ablkkr0Z9pnm44h6B9iPZWNDaLxrqvpsI1ZJ8vQ8rT6q-sD6g-law/exec";
 
 // ================= ORDER FORM SUBMIT =================
 if (orderForm) {
