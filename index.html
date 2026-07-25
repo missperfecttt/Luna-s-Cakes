@@ -1,357 +1,354 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="chat.css">
-  </head>
-  <body>
-    <!-- Top Announcement Bar -->
-    <div class="top-banner">
-      ✨ Gourmet Wholesale Confectionery • Artisanal Orders Require 48 Hours Advance Notice
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="chat.css">
+</head>
+
+<body>
+
+
+  <!-- Main Header -->
+  <header class="header">
+    <div class="logo-wrapper">
+      <div class="logo-sticker-frame">
+        <img src="Family.png" alt="Family Bakery — Luna's Cakes Logo" class="logo-img" onerror="this.onerror=null; this.src='logo.jpg';" />
+      </div>
+      <div class="logo-text-group">
+        <div class="logo-text">Luna's Cakes</div>
+        <div class="logo-subtext">Gourmet Artisan Bakery</div>
+      </div>
     </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle Navigation">☰</button>
+  </header>
 
-    <!-- Main Header -->
-    <header class="header">
-     <div class="logo">
-  <!-- Image logo with automatic emoji fallback if image is missing -->
-  <img src="logo.jpg" alt="Luna's Cakes Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
-  <span class="logo-icon" style="display: none;">🍰</span>
-  <div class="logo-text">Family Bakery</div>
-</div>
-      <button class="menu-btn" id="menuBtn" aria-label="Toggle Navigation">☰</button>
-    </header>
+  <!-- Deep Plum Sticky Navigation -->
+  <nav class="nav" id="nav">
+    <a href="#home">Home</a>
+    <a href="#about">About Us</a>
+    <a href="#cakes">Specialties</a>
+    <a href="#gallery">Portfolio</a>
+    <a href="#order">Order Form</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-    <!-- Deep Plum Sticky Navigation -->
-    <nav class="nav" id="nav">
-      <a href="#home">Home</a>
-      <a href="#about">About Us</a>
-      <a href="#cakes">Specialties</a>
-      <a href="#gallery">Portfolio</a>
-      <a href="#order">Order Form</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <!-- Asymmetric 60/40 Hero Section -->
-    <section id="home" class="hero">
-      <div class="hero-content">
-        <span class="hero-subtitle">We Are</span>
-        <h1>Gourmet Artisan Confections</h1>
-        <p>
-          Bespoke cakes and hand-crafted patisserie prepared fresh to elevate your special celebrations.
-        </p>
-        <a href="#order" class="btn btn-hero">Start Your Order</a>
-      </div>
-      <div class="hero-overlay"></div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section about-section">
-      <div class="section-badge">Our Craft</div>
-      <h2>Handcrafted Excellence</h2>
-      <p class="center-text">
-        At <strong>Luna's Cakes</strong>, we combine traditional European baking technique with rich, local flavor profiles. From custom layered birthday cakes to multi-tiered event centerpieces, every creation is baked fresh to order using finest raw ingredients.
+  <!-- Asymmetric 60/40 Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <span class="hero-subtitle">We Are</span>
+      <h1>Gourmet Artisan Confections</h1>
+      <p>
+        Bespoke cakes and hand-crafted patisserie prepared fresh to elevate your special celebrations.
       </p>
-    </section>
+      <a href="#order" class="btn btn-hero">Start Your Order</a>
+    </div>
+    <div class="hero-overlay"></div>
+  </section>
 
-    <!-- Featured Products Bento Section -->
-    <section id="cakes" class="section cakes-section">
-      <div class="section-badge">Catalog Specialties</div>
-      <h2>Signature Creations</h2>
-      <div class="cards">
-        <div class="card">
-          <div class="card-badge">Bestseller</div>
-          <div class="card-image">🍫</div>
-          <h3>Belgian Dark Chocolate Ganache</h3>
-          <p>Decadent cacao layers paired with velvet buttercream and bittersweet truffle frosting.</p>
-          <span class="price-tag">From 1,000 ETB</span>
-        </div>
+  <!-- About Section -->
+  <section id="about" class="section about-section">
+    <div class="section-badge">Our Craft</div>
+    <h2>Handcrafted Excellence</h2>
+    <p class="center-text">
+      At <strong>Luna's Cakes</strong>, we combine traditional European baking technique with rich, local flavor
+      profiles. From custom layered birthday cakes to multi-tiered event centerpieces, every creation is baked fresh to
+      order using finest raw ingredients.
+    </p>
+  </section>
 
-        <div class="card">
-          <div class="card-badge">Popular</div>
-          <div class="card-image">🎂</div>
-          <h3>Classic Celebration Layer</h3>
-          <p>Custom-tinted vanilla sponge with berry compote filling, crafted for birthdays & milestones.</p>
-          <span class="price-tag">From 1,200 ETB</span>
-        </div>
-
-        <div class="card">
-          <div class="card-badge">Custom</div>
-          <div class="card-image">🎓</div>
-          <h3>Graduation & Gala Tier</h3>
-          <p>Sophisticated multi-tiered custom cake personalized to your theme & color palette.</p>
-          <span class="price-tag">From 1,500 ETB</span>
-        </div>
+  <!-- Featured Products Bento Section -->
+  <section id="cakes" class="section cakes-section">
+    <div class="section-badge">Catalog Specialties</div>
+    <h2>Signature Creations</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-badge">Bestseller</div>
+        <div class="card-image">🍫</div>
+        <h3>Belgian Dark Chocolate Ganache</h3>
+        <p>Decadent cacao layers paired with velvet buttercream and bittersweet truffle frosting.</p>
+        <span class="price-tag">From 1,000 ETB</span>
       </div>
-    </section>
 
-    <!-- Portfolio Gallery -->
-    <section id="gallery" class="section gallery-section">
-      <div class="section-badge">Portfolio</div>
-      <h2>Sweet Inspiration</h2>
-      <div class="gallery">
-        <div class="gallery-item"><span>🍰</span><p>Multi-Tiered</p></div>
-        <div class="gallery-item"><span>🧁</span><p>Macaron Sets</p></div>
-        <div class="gallery-item"><span>🎂</span><p>Floral Birthday</p></div>
-        <div class="gallery-item"><span>🍓</span><p>Berry Velvet</p></div>
-        <div class="gallery-item"><span>🍫</span><p>Truffle Ganache</p></div>
-        <div class="gallery-item"><span>🌸</span><p>Pastel Event</p></div>
+      <div class="card">
+        <div class="card-badge">Popular</div>
+        <div class="card-image">🎂</div>
+        <h3>Classic Celebration Layer</h3>
+        <p>Custom-tinted vanilla sponge with berry compote filling, crafted for birthdays & milestones.</p>
+        <span class="price-tag">From 1,200 ETB</span>
       </div>
-    </section>
 
-    <!-- Sequential Order Section -->
-    <section id="order" class="order-container-section">
-      <div class="order-card-wrapper">
-        <div class="form-header">
-          <span class="form-subheading">B2B & Retail Order Portal</span>
-          <h2>Place Your Cake Order</h2>
-          <p>Complete the order specifications below to lock in your date.</p>
-        </div>
+      <div class="card">
+        <div class="card-badge">Custom</div>
+        <div class="card-image">🎓</div>
+        <h3>Graduation & Gala Tier</h3>
+        <p>Sophisticated multi-tiered custom cake personalized to your theme & color palette.</p>
+        <span class="price-tag">From 1,500 ETB</span>
+      </div>
+    </div>
+  </section>
 
-        <form id="orderForm" class="order-form">
-          <!-- Step 1 -->
-          <div class="form-group-section">
-            <h3 class="form-section-title">01. Customer & Contact Details</h3>
-            <div class="form-grid-2">
-              <div class="input-wrapper">
-                <label for="name">Full Name *</label>
-                <input id="name" type="text" placeholder="e.g. Sara Tekle" required />
-              </div>
-              <div class="input-wrapper">
-                <label for="phone">Phone Number *</label>
-                <input id="phone" type="tel" placeholder="e.g. +251 91 123 4567" required />
-              </div>
+  <!-- Portfolio Gallery -->
+  <section id="gallery" class="section gallery-section">
+    <div class="section-badge">Portfolio</div>
+    <h2>Sweet Inspiration</h2>
+    <div class="gallery">
+      <div class="gallery-item"><span>🍰</span>
+        <p>Multi-Tiered</p>
+      </div>
+      <div class="gallery-item"><span>🧁</span>
+        <p>Macaron Sets</p>
+      </div>
+      <div class="gallery-item"><span>🎂</span>
+        <p>Floral Birthday</p>
+      </div>
+      <div class="gallery-item"><span>🍓</span>
+        <p>Berry Velvet</p>
+      </div>
+      <div class="gallery-item"><span>🍫</span>
+        <p>Truffle Ganache</p>
+      </div>
+      <div class="gallery-item"><span>🌸</span>
+        <p>Pastel Event</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sequential Order Section -->
+  <section id="order" class="order-container-section">
+    <div class="order-card-wrapper">
+      <div class="form-header">
+        <span class="form-subheading">B2B & Retail Order Portal</span>
+        <h2>Place Your Cake Order</h2>
+        <p>Complete the order specifications below to lock in your date.</p>
+      </div>
+
+      <form id="orderForm" class="order-form">
+        <!-- Step 1 -->
+        <div class="form-group-section">
+          <h3 class="form-section-title">01. Customer & Contact Details</h3>
+          <div class="form-grid-2">
+            <div class="input-wrapper">
+              <label for="name">Full Name *</label>
+              <input id="name" type="text" placeholder="e.g. Sara Tekle" required />
             </div>
             <div class="input-wrapper">
-              <label for="email">Email Address (Optional)</label>
-              <input id="email" type="email" placeholder="e.g. sara@example.com" />
+              <label for="phone">Phone Number *</label>
+              <input id="phone" type="tel" placeholder="e.g. +251 91 123 4567" required />
             </div>
           </div>
-
-          <!-- Step 2 -->
-          <div class="form-group-section">
-            <h3 class="form-section-title">02. Confection Specifications</h3>
-            <div class="form-grid-3">
-              <div class="input-wrapper">
-                <label for="occasion">Occasion *</label>
-                <select id="occasion" required>
-                  <option value="">Select Occasion</option>
-                  <option>Birthday</option>
-                  <option>Graduation</option>
-                  <option>Wedding</option>
-                  <option>Anniversary</option>
-                  <option>Baby Shower</option>
-                  <option>Custom Event</option>
-                </select>
-              </div>
-
-              <div class="input-wrapper">
-                <label for="flavor">Flavor *</label>
-                <select id="flavor" required>
-                  <option value="">Choose Flavor</option>
-                  <option>Vanilla Sponge</option>
-                  <option>Chocolate Fudge</option>
-                  <option>Red Velvet</option>
-                  <option>Strawberry Cream</option>
-                  <option>Espresso Coffee</option>
-                  <option>Lemon Zest</option>
-                </select>
-              </div>
-
-              <div class="input-wrapper">
-                <label for="size">Cake Size *</label>
-                <select id="size" required>
-                  <option value="">Select Size</option>
-                  <option>6 Inch (Serves 6-8)</option>
-                  <option>8 Inch (Serves 12-15)</option>
-                  <option>10 Inch (Serves 20-25)</option>
-                  <option>12 Inch (Serves 30+)</option>
-                  <option>Custom Multi-Tier</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Upload Reference Image -->
-            <div class="input-wrapper file-upload-wrapper">
-              <label for="referenceImage">Reference Image (Optional Photo Inspiration)</label>
-              <div class="custom-file-input">
-                <input id="referenceImage" type="file" accept="image/*" />
-                <span class="file-hint">📷 Click to attach photo reference</span>
-              </div>
-            </div>
+          <div class="input-wrapper">
+            <label for="email">Email Address (Optional)</label>
+            <input id="email" type="email" placeholder="e.g. sara@example.com" />
           </div>
+        </div>
 
-          <!-- Step 3 -->
-          <div class="form-group-section">
-            <h3 class="form-section-title">03. Schedule & Logistics</h3>
-            <div class="form-grid-2">
-              <div class="input-wrapper">
-                <label for="deliveryDate">Delivery / Pickup Date *</label>
-                <input id="deliveryDate" type="date" required />
-              </div>
-              <div class="input-wrapper">
-                <label for="deliveryTime">Preferred Time *</label>
-                <input id="deliveryTime" type="time" required />
-              </div>
-            </div>
-
-            <div class="form-grid-2">
-              <div class="input-wrapper">
-                <label for="method">Fulfillment Method *</label>
-                <select id="method" required>
-                  <option value="">Pickup or Delivery?</option>
-                  <option>Pickup</option>
-                  <option>Delivery</option>
-                </select>
-              </div>
-
-              <div class="input-wrapper">
-                <label for="budget">Approximate Budget</label>
-                <select id="budget">
-                  <option value="">Select Budget Tier</option>
-                  <option>Below 1,000 ETB</option>
-                  <option>1,000 - 2,000 ETB</option>
-                  <option>2,000 - 3,500 ETB</option>
-                  <option>3,500 - 5,000 ETB</option>
-                  <option>Above 5,000 ETB</option>
-                </select>
-              </div>
+        <!-- Step 2 -->
+        <div class="form-group-section">
+          <h3 class="form-section-title">02. Confection Specifications</h3>
+          <div class="form-grid-3">
+            <div class="input-wrapper">
+              <label for="occasion">Occasion *</label>
+              <select id="occasion" required>
+                <option value="">Select Occasion</option>
+                <option>Birthday</option>
+                <option>Graduation</option>
+                <option>Wedding</option>
+                <option>Anniversary</option>
+                <option>Baby Shower</option>
+                <option>Custom Event</option>
+              </select>
             </div>
 
             <div class="input-wrapper">
-              <label for="address">Delivery Address (If delivery selected)</label>
-              <textarea
-                id="address"
-                rows="2"
-                placeholder="Enter specific neighborhood, building, or landmark..."
-              ></textarea>
+              <label for="flavor">Flavor *</label>
+              <select id="flavor" required>
+                <option value="">Choose Flavor</option>
+                <option>Vanilla Sponge</option>
+                <option>Chocolate Fudge</option>
+                <option>Red Velvet</option>
+                <option>Strawberry Cream</option>
+                <option>Espresso Coffee</option>
+                <option>Lemon Zest</option>
+              </select>
             </div>
 
             <div class="input-wrapper">
-              <label for="notes">Special Inscriptions & Design Notes</label>
-              <textarea
-                id="notes"
-                rows="3"
-                placeholder="Writing on cake, color preferences, dietary notes..."
-              ></textarea>
+              <label for="size">Cake Size *</label>
+              <select id="size" required>
+                <option value="">Select Size</option>
+                <option>6 Inch (Serves 6-8)</option>
+                <option>8 Inch (Serves 12-15)</option>
+                <option>10 Inch (Serves 20-25)</option>
+                <option>12 Inch (Serves 30+)</option>
+                <option>Custom Multi-Tier</option>
+              </select>
             </div>
           </div>
 
-          <button type="submit" class="btn btn-submit">Place Order & Proceed to Payment →</button>
-        </form>
-      </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="section reviews-section">
-      <div class="section-badge">Client Trust</div>
-      <h2>Loved by Our Customers</h2>
-      <div class="review-grid">
-        <div class="review">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p>"The cake was absolute perfection. Visually grand and tasted divine."</p>
-          <div class="review-author">— Sara M.</div>
+          <!-- Upload Reference Image -->
+          <div class="input-wrapper file-upload-wrapper">
+            <label for="referenceImage">Reference Image (Optional Photo Inspiration)</label>
+            <div class="custom-file-input">
+              <input id="referenceImage" type="file" accept="image/*" />
+              <span class="file-hint">📷 Click to attach photo reference</span>
+            </div>
+          </div>
         </div>
 
-        <div class="review">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p>"Flawless delivery, prompt communication, and exceptional artistry."</p>
-          <div class="review-author">— Daniel K.</div>
+        <!-- Step 3 -->
+        <div class="form-group-section">
+          <h3 class="form-section-title">03. Schedule & Logistics</h3>
+          <div class="form-grid-2">
+            <div class="input-wrapper">
+              <label for="deliveryDate">Delivery / Pickup Date *</label>
+              <input id="deliveryDate" type="date" required />
+            </div>
+            <div class="input-wrapper">
+              <label for="deliveryTime">Preferred Time *</label>
+              <input id="deliveryTime" type="time" required />
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="input-wrapper">
+              <label for="method">Fulfillment Method *</label>
+              <select id="method" required>
+                <option value="">Pickup or Delivery?</option>
+                <option>Pickup</option>
+                <option>Delivery</option>
+              </select>
+            </div>
+
+            <div class="input-wrapper">
+              <label for="budget">Approximate Budget</label>
+              <select id="budget">
+                <option value="">Select Budget Tier</option>
+                <option>Below 1,000 ETB</option>
+                <option>1,000 - 2,000 ETB</option>
+                <option>2,000 - 3,500 ETB</option>
+                <option>3,500 - 5,000 ETB</option>
+                <option>Above 5,000 ETB</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-wrapper">
+            <label for="address">Delivery Address (If delivery selected)</label>
+            <textarea id="address" rows="2"
+              placeholder="Enter specific neighborhood, building, or landmark..."></textarea>
+          </div>
+
+          <div class="input-wrapper">
+            <label for="notes">Special Inscriptions & Design Notes</label>
+            <textarea id="notes" rows="3" placeholder="Writing on cake, color preferences, dietary notes..."></textarea>
+          </div>
         </div>
+
+        <button type="submit" class="btn btn-submit">Place Order & Proceed to Payment →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section reviews-section">
+    <div class="section-badge">Client Trust</div>
+    <h2>Loved by Our Customers</h2>
+    <div class="review-grid">
+      <div class="review">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>"The cake was absolute perfection. Visually grand and tasted divine."</p>
+        <div class="review-author">— Sara M.</div>
       </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact-section">
-      <div class="section-badge">Contact Us</div>
-      <h2>Get in Touch</h2>
-      <div class="contact-details">
-        <p>📍 <strong>Location:</strong> Addis Ababa, Ethiopia</p>
-        <p>📞 <strong>Phone / WhatsApp:</strong> +251-988175522</p>
-        <p>📧 <strong>Email:</strong> abigailmekonnen70@gmail.com</p>
+      <div class="review">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>"Flawless delivery, prompt communication, and exceptional artistry."</p>
+        <div class="review-author">— Daniel K.</div>
       </div>
-      <br/>
-      <a href="https://wa.me/251988175522" target="_blank" rel="noopener" class="btn whatsapp-btn">
-        💬 Chat on WhatsApp
-      </a>
-    </section>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <p>© 2026 Luna's Cakes — Crafted with Passion & Elegance</p>
-    </footer>
+  <!-- Contact Section -->
+  <section id="contact" class="section contact-section">
+    <div class="section-badge">Contact Us</div>
+    <h2>Get in Touch</h2>
+    <div class="contact-details">
+      <p>📍 <strong>Location:</strong> Addis Ababa, Ethiopia</p>
+      <p>📞 <strong>Phone / WhatsApp:</strong> +251-988175522</p>
+      <p>📧 <strong>Email:</strong> abigailmekonnen70@gmail.com</p>
+    </div>
+    <br />
+    <a href="https://wa.me/251988175522" target="_blank" rel="noopener" class="btn whatsapp-btn">
+      💬 Chat on WhatsApp
+    </a>
+  </section>
 
-    <button id="topBtn" class="top-btn" aria-label="Scroll to Top">↑</button>
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2026 Luna's Cakes — Crafted with Passion & Elegance</p>
+  </footer>
 
-    <!-- Chat Assistant -->
-<!-- ================= CHAT ASSISTANT ================= -->
+  <button id="topBtn" class="top-btn" aria-label="Scroll to Top">↑</button>
 
-<div id="chatButton">
-    💬
-</div>
+  <!-- Chat Assistant -->
+  <!-- ================= CHAT ASSISTANT ================= -->
+  <div id="chatButton" title="Chat with Luna's Cake Assistant">
+    <div class="chat-btn-icon">💬</div>
+    <span class="chat-badge">1</span>
+    <div class="chat-tooltip">Need help? Ask us! 🍰</div>
+  </div>
 
-<div id="chatWindow">
-
+  <div id="chatWindow">
     <div id="chatHeader">
-        🍰 Luna's Cake Assistant
+      <div class="chat-header-info">
+        <div class="chat-avatar">🍰</div>
+        <div>
+          <div class="chat-title">Luna's Cake Assistant</div>
+          <div class="chat-status"><span class="status-dot"></span> Online • Responds Instantly</div>
+        </div>
+      </div>
+      <button id="closeChat" aria-label="Close Chat">✕</button>
     </div>
 
     <div id="chatMessages">
-
-        <div class="botMessage">
-            👋 Hello! I'm Luna's Cake Assistant.
-
-            <br><br>
-
-            Ask me things like:
-
-            <br>
-
-            • Cake prices
-
-            <br>
-
-            • Delivery
-
-            <br>
-
-            • Payment
-
-            <br>
-
-            • Flavours
-
-            <br>
-
-            • Ordering
+      <div class="bot">
+        <div class="msg-text">
+          👋 Hello! Welcome to <strong>Luna's Cakes</strong>! I'm your virtual cake concierge.
+          <br><br>
+          How can I assist you today? Click a topic below or type your question:
         </div>
-
+        <div class="chat-chips">
+          <button class="chip" data-query="Cake prices">💰 Prices</button>
+          <button class="chip" data-query="Flavors">🎂 Flavors</button>
+          <button class="chip" data-query="Delivery info">🚚 Delivery</button>
+          <button class="chip" data-query="Payment options">💳 Payment</button>
+          <button class="chip" data-query="How to order">📋 How to Order</button>
+        </div>
+      </div>
     </div>
 
     <div id="chatInputArea">
-
-        <input
-            type="text"
-            id="chatInput"
-            placeholder="Ask a question..."
-        >
-
-        <button id="sendBtn">
-            Send
-        </button>
-
+      <input type="text" id="chatInput" placeholder="Type your question..." autocomplete="off">
+      <button id="sendBtn" aria-label="Send Message">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
     </div>
+  </div>
+  <script src="script.js"></script>
+  <script src="chat.js"></script>
+</body>
 
-</div>
-    <script src="script.js"></script>
-    <script src="chat.js"></script>
-  </body>
 </html>
