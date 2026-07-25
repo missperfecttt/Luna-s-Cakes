@@ -44,6 +44,18 @@ document.querySelectorAll(".section, .card, .review").forEach((el) => {
   observer.observe(el);
 });
 
+// ================= INPUT SANITIZATION =================
+// Sanitizes input strings to prevent cross-site scripting (XSS) / injection
+function sanitizeInput(str) {
+  if (!str) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 const orderForm = document.getElementById("orderForm");
 
 // ================= CLOUDINARY =================
@@ -60,6 +72,13 @@ const scriptURL =
 if (orderForm) {
   orderForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    // 1. Anti-Spam Check: Ensure Cloudflare Turnstile token exists
+    const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]')?.value;
+    if (!turnstileResponse) {
+      alert("⚠️ Please complete the security verification check before submitting your order.");
+      return;
+    }
 
     const submitButton = orderForm.querySelector("button[type='submit']");
     const fileInput = document.getElementById("referenceImage");
@@ -93,26 +112,27 @@ if (orderForm) {
         imageUrl = cloudinaryResult.secure_url || "";
       }
 
-      // ================= Prepare Order Data =================
+      // ================= Prepare Sanitized Order Data =================
       if (submitButton) {
         submitButton.textContent = "Placing order...";
         submitButton.disabled = true;
       }
 
       const orderData = {
-        name: document.getElementById("name").value.trim(),
-        phone: document.getElementById("phone").value.trim(),
-        email: document.getElementById("email") ? document.getElementById("email").value.trim() : "",
+        name: sanitizeInput(document.getElementById("name").value.trim()),
+        phone: sanitizeInput(document.getElementById("phone").value.trim()),
+        email: sanitizeInput(document.getElementById("email") ? document.getElementById("email").value.trim() : ""),
         occasion: document.getElementById("occasion").value,
         flavor: document.getElementById("flavor").value,
         size: document.getElementById("size").value,
         deliveryDate: document.getElementById("deliveryDate").value,
         deliveryTime: document.getElementById("deliveryTime").value,
         method: document.getElementById("method").value,
-        address: document.getElementById("address") ? document.getElementById("address").value.trim() : "",
+        address: sanitizeInput(document.getElementById("address") ? document.getElementById("address").value.trim() : ""),
         budget: document.getElementById("budget") ? document.getElementById("budget").value : "",
-        notes: document.getElementById("notes") ? document.getElementById("notes").value.trim() : "",
-        imageUrl: imageUrl
+        notes: sanitizeInput(document.getElementById("notes") ? document.getElementById("notes").value.trim() : ""),
+        imageUrl: imageUrl,
+        "cf-turnstile-response": turnstileResponse
       };
 
       console.log("Sending Order Data:", orderData);
