@@ -12,26 +12,25 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="chat.css">
+
+  <!-- Cloudflare Turnstile Anti-Spam Script -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
 <body>
 
-
   <!-- Main Header -->
   <header class="header">
-    <div class="logo-wrapper">
-      <div class="logo-sticker-frame">
-        <img src="Family.png" alt="Family Bakery — Luna's Cakes Logo" class="logo-img" onerror="this.onerror=null; this.src='logo.jpg';" />
-      </div>
-      <div class="logo-text-group">
-        <div class="logo-text">Luna's Cakes</div>
-        <div class="logo-subtext">Gourmet Artisan Bakery</div>
-      </div>
+    <div class="logo">
+      <img src="logo.jpg" alt="Family Bakery Logo" class="logo-img"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
+      <span class="logo-icon" style="display: none;">🍰</span>
+      <div class="logo-text">Family Bakery</div>
     </div>
     <button class="menu-btn" id="menuBtn" aria-label="Toggle Navigation">☰</button>
   </header>
 
-  <!-- Deep Plum Sticky Navigation -->
+  <!-- Navigation Bar -->
   <nav class="nav" id="nav">
     <a href="#home">Home</a>
     <a href="#about">About Us</a>
@@ -41,7 +40,7 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <!-- Asymmetric 60/40 Hero Section -->
+  <!-- Hero Section -->
   <section id="home" class="hero">
     <div class="hero-content">
       <span class="hero-subtitle">We Are</span>
@@ -59,13 +58,13 @@
     <div class="section-badge">Our Craft</div>
     <h2>Handcrafted Excellence</h2>
     <p class="center-text">
-      At <strong>Luna's Cakes</strong>, we combine traditional European baking technique with rich, local flavor
+      At <strong>Family Bakery</strong>, we combine traditional European baking technique with rich, local flavor
       profiles. From custom layered birthday cakes to multi-tiered event centerpieces, every creation is baked fresh to
       order using finest raw ingredients.
     </p>
   </section>
 
-  <!-- Featured Products Bento Section -->
+  <!-- Featured Products Section -->
   <section id="cakes" class="section cakes-section">
     <div class="section-badge">Catalog Specialties</div>
     <h2>Signature Creations</h2>
@@ -101,24 +100,12 @@
     <div class="section-badge">Portfolio</div>
     <h2>Sweet Inspiration</h2>
     <div class="gallery">
-      <div class="gallery-item"><span>🍰</span>
-        <p>Multi-Tiered</p>
-      </div>
-      <div class="gallery-item"><span>🧁</span>
-        <p>Macaron Sets</p>
-      </div>
-      <div class="gallery-item"><span>🎂</span>
-        <p>Floral Birthday</p>
-      </div>
-      <div class="gallery-item"><span>🍓</span>
-        <p>Berry Velvet</p>
-      </div>
-      <div class="gallery-item"><span>🍫</span>
-        <p>Truffle Ganache</p>
-      </div>
-      <div class="gallery-item"><span>🌸</span>
-        <p>Pastel Event</p>
-      </div>
+      <div class="gallery-item"><span>🍰</span><p>Multi-Tiered</p></div>
+      <div class="gallery-item"><span>🧁</span><p>Macaron Sets</p></div>
+      <div class="gallery-item"><span>🎂</span><p>Floral Birthday</p></div>
+      <div class="gallery-item"><span>🍓</span><p>Berry Velvet</p></div>
+      <div class="gallery-item"><span>🍫</span><p>Truffle Ganache</p></div>
+      <div class="gallery-item"><span>🌸</span><p>Pastel Event</p></div>
     </div>
   </section>
 
@@ -194,7 +181,6 @@
             </div>
           </div>
 
-          <!-- Upload Reference Image -->
           <div class="input-wrapper file-upload-wrapper">
             <label for="referenceImage">Reference Image (Optional Photo Inspiration)</label>
             <div class="custom-file-input">
@@ -253,6 +239,11 @@
           </div>
         </div>
 
+        <!-- Anti-Spam Widget -->
+        <div style="margin-bottom: 1rem;">
+          <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY" data-theme="light"></div>
+        </div>
+
         <button type="submit" class="btn btn-submit">Place Order & Proceed to Payment →</button>
       </form>
     </div>
@@ -294,14 +285,13 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <p>© 2026 Luna's Cakes — Crafted with Passion & Elegance</p>
+    <p>© 2026 Family Bakery — Crafted with Passion & Elegance</p>
   </footer>
 
   <button id="topBtn" class="top-btn" aria-label="Scroll to Top">↑</button>
 
   <!-- Chat Assistant -->
-  <!-- ================= CHAT ASSISTANT ================= -->
-  <div id="chatButton" title="Chat with Luna's Cake Assistant">
+  <div id="chatButton" title="Chat with Family Bakery Assistant">
     <div class="chat-btn-icon">💬</div>
     <span class="chat-badge">1</span>
     <div class="chat-tooltip">Need help? Ask us! 🍰</div>
@@ -312,7 +302,7 @@
       <div class="chat-header-info">
         <div class="chat-avatar">🍰</div>
         <div>
-          <div class="chat-title">Luna's Cake Assistant</div>
+          <div class="chat-title">Family Bakery Assistant</div>
           <div class="chat-status"><span class="status-dot"></span> Online • Responds Instantly</div>
         </div>
       </div>
@@ -322,7 +312,7 @@
     <div id="chatMessages">
       <div class="bot">
         <div class="msg-text">
-          👋 Hello! Welcome to <strong>Luna's Cakes</strong>! I'm your virtual cake concierge.
+          👋 Hello! Welcome to <strong>Family Bakery</strong>! I'm your virtual cake concierge.
           <br><br>
           How can I assist you today? Click a topic below or type your question:
         </div>
@@ -347,6 +337,7 @@
       </button>
     </div>
   </div>
+
   <script src="script.js"></script>
   <script src="chat.js"></script>
 </body>
