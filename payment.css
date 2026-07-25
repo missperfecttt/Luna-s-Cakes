@@ -31,6 +31,32 @@
   --shadow-subtle: 0 4px 20px rgba(42, 35, 32, 0.05);
 }
 
+/* Custom Die-Cut Sticker Logo Frame */
+.logo-sticker-frame {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  background: linear-gradient(145deg, #ffffff, #fdf8ec);
+  border-radius: 28px 36px 24px 32px / 32px 24px 36px 28px;
+  box-shadow: 
+    0 0 0 3px #FFFFFF,
+    0 0 0 5px var(--primary-yellow),
+    0 8px 20px rgba(59, 21, 84, 0.18),
+    0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.logo-sticker-frame:hover {
+  transform: translateY(-3px) scale(1.04) rotate(-1deg);
+  box-shadow: 
+    0 0 0 4px #FFFFFF,
+    0 0 0 7px var(--secondary-yellow),
+    0 12px 28px rgba(59, 21, 84, 0.25),
+    0 4px 12px rgba(232, 168, 0, 0.35);
+}
+
 /* Reset & Page Setup */
 * {
   box-sizing: border-box;
