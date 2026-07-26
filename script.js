@@ -1,3 +1,61 @@
+// ================= CLOUDFLARE TURNSTILE CAPTCHA CALLBACKS =================
+let turnstileToken = "";
+
+// Called when Turnstile API script is loaded
+function onTurnstileLoad() {
+  // Widget is auto-rendered by the cf-turnstile class; callbacks handle state
+  console.log("[Turnstile] Widget API loaded.");
+}
+
+// Called when user successfully completes the challenge
+function onTurnstileSuccess(token) {
+  turnstileToken = token;
+  const btn = document.getElementById("submitOrderBtn");
+  const status = document.getElementById("captchaStatus");
+  if (btn) {
+    btn.disabled = false;
+    btn.style.opacity = "1";
+    btn.style.cursor = "pointer";
+  }
+  if (status) {
+    status.textContent = "✅ Security check passed! You may now place your order.";
+    status.style.color = "#28a745";
+  }
+}
+
+// Called when the Turnstile token expires (user took too long)
+function onTurnstileExpired() {
+  turnstileToken = "";
+  const btn = document.getElementById("submitOrderBtn");
+  const status = document.getElementById("captchaStatus");
+  if (btn) {
+    btn.disabled = true;
+    btn.style.opacity = "0.6";
+    btn.style.cursor = "not-allowed";
+  }
+  if (status) {
+    status.textContent = "⚠️ Security check expired. Please complete it again.";
+    status.style.color = "#e67e22";
+  }
+}
+
+// Called when Turnstile encounters an error
+function onTurnstileError() {
+  turnstileToken = "";
+  const btn = document.getElementById("submitOrderBtn");
+  const status = document.getElementById("captchaStatus");
+  if (btn) {
+    btn.disabled = true;
+    btn.style.opacity = "0.6";
+    btn.style.cursor = "not-allowed";
+  }
+  if (status) {
+    status.textContent = "❌ Security check failed. Please refresh the page and try again.";
+    status.style.color = "#d9534f";
+  }
+}
+
+// Navigation Mobile Menu Toggle
 const menuBtn = document.getElementById("menuBtn");
 const nav = document.getElementById("nav");
 
@@ -13,6 +71,7 @@ if (menuBtn && nav) {
   });
 }
 
+// Scroll to Top Button
 const topBtn = document.getElementById("topBtn");
 if (topBtn) {
   window.addEventListener("scroll", () => {
@@ -31,6 +90,7 @@ if (topBtn) {
   });
 }
 
+// Intersection Observer for Animations
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -55,20 +115,115 @@ function sanitizeInput(str) {
     .replace(/'/g, "&#039;");
 }
 
-const orderForm = document.getElementById("orderForm");
-
-// ================= ENDPOINTS =================
+// ================= ENDPOINTS & CONFIG =================
+const scriptURL = "https://script.google.com/macros/s/AKfycbyGWqGNMa7BbM8PnZNsKF6GErNVxiWFYvbFocheSQMcUpL5ieVgprm3xgXFGxlyLtQEcg/exec";
 const cloudinaryUrl = "https://api.cloudinary.com/v1_1/xpzpo4yy/image/upload";
 const cloudinaryPreset = "lunascakes_upload";
 
+// ================= FILE UPLOAD DYNAMIC BUTTON FEEDBACK =================
+const refImageInput = document.getElementById("referenceImage");
+if (refImageInput) {
+  refImageInput.addEventListener("change", function () {
+    const parent = this.closest(".custom-file-input");
+    const hint = parent ? parent.querySelector(".file-hint") : null;
+    if (this.files && this.files.length > 0) {
+      const fileName = this.files[0].name;
+      if (hint) {
+        hint.textContent = `✅ Attached: ${fileName}`;
+        hint.classList.add("uploaded");
+      }
+      if (parent) parent.classList.add("has-file");
+    } else {
+      if (hint) {
+        hint.textContent = "📷 Click to attach photo reference";
+        hint.classList.remove("uploaded");
+      }
+      if (parent) parent.classList.remove("has-file");
+    }
+  });
+}
+
+// ================= PHASE 4: DYNAMIC DATE & CAPACITY LIMITS =================
+let fullyBookedDates = [];
+
+function setupDatePicker() {
+  const dateInput = document.getElementById("deliveryDate");
+  const dateHelp = document.getElementById("dateHelp");
+  if (!dateInput) return;
+
+  // Calculate 48 Hours Lead Time (Minimum 2 days from today)
+  const now = new Date();
+  const leadTimeDate = new Date(now.getTime() + (48 * 60 * 60 * 1000));
+  
+  // Format as YYYY-MM-DD
+  const minDateStr = leadTimeDate.toISOString().split("T")[0];
+  dateInput.min = minDateStr;
+
+  // Fetch fully booked dates from Apps Script backend
+  fetch(scriptURL)
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.result === "success" && Array.isArray(data.fullyBookedDates)) {
+        fullyBookedDates = data.fullyBookedDates;
+      }
+    })
+    .catch((err) => {
+      console.warn("Could not fetch fully booked dates array:", err);
+    });
+
+  // Date selection validation listener
+  dateInput.addEventListener("change", function () {
+    const selectedDate = this.value;
+    if (!selectedDate) return;
+
+    // 1. Validate 48 Hours Minimum Lead Time
+    if (selectedDate < minDateStr) {
+      alert(`⚠️ Orders require at least 48 hours advance notice.\nPlease choose a date on or after ${minDateStr}.`);
+      this.value = "";
+      if (dateHelp) {
+        dateHelp.textContent = `⚠️ Selected date is too soon! Minimum lead time is 48 hours (${minDateStr}).`;
+        dateHelp.style.color = "#d9534f";
+      }
+      return;
+    }
+
+    // 2. Validate Daily Capacity Limit (Fully Booked Dates)
+    if (fullyBookedDates.includes(selectedDate)) {
+      alert(`❌ We are fully booked on ${selectedDate}!\nPlease select another delivery date.`);
+      this.value = "";
+      if (dateHelp) {
+        dateHelp.textContent = `❌ ${selectedDate} is fully booked! Please pick a different date.`;
+        dateHelp.style.color = "#d9534f";
+      }
+      return;
+    }
+
+    // Reset date help indicator if date is valid
+    if (dateHelp) {
+      dateHelp.textContent = "✅ Date available! (Minimum 48 hours lead time met)";
+      dateHelp.style.color = "#28a745";
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", setupDatePicker);
+
 // ================= ORDER FORM SUBMIT =================
+const orderForm = document.getElementById("orderForm");
 if (orderForm) {
   orderForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // 1. Anti-Spam Check
-    const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]')?.value;
-    if (!turnstileResponse) {
+    // 1. Anti-Spam Check — get token from global variable or hidden input as fallback
+    const cfToken = turnstileToken ||
+      (document.querySelector('[name="cf-turnstile-response"]')?.value) || "";
+
+    if (!cfToken) {
+      const status = document.getElementById("captchaStatus");
+      if (status) {
+        status.textContent = "⚠️ Please complete the security verification check first!";
+        status.style.color = "#d9534f";
+      }
       alert("⚠️ Please complete the security verification check before submitting your order.");
       return;
     }
@@ -121,7 +276,8 @@ if (orderForm) {
         address: sanitizeInput(document.getElementById("address") ? document.getElementById("address").value.trim() : ""),
         budget: document.getElementById("budget") ? document.getElementById("budget").value : "",
         notes: sanitizeInput(document.getElementById("notes") ? document.getElementById("notes").value.trim() : ""),
-        imageUrl: imageUrl
+        imageUrl: imageUrl,
+        "cf-turnstile-response": cfToken   // ← Forward CAPTCHA token to backend via payment.js
       };
 
       localStorage.setItem("pendingOrder", JSON.stringify(pendingOrder));
