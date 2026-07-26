@@ -116,7 +116,7 @@ function sanitizeInput(str) {
 }
 
 // ================= ENDPOINTS & CONFIG =================
-const scriptURL = "https://script.google.com/macros/s/AKfycbxGN01Tpj4olni3kz8qS-0brlPBCdhvWmqLZzplEJt_Ga33quZ0wuBuMmsP2Md77lYA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycby3dGfeW3akUNI3XPzCLMaXBmPLXpjQ7JAmMbDTzSXzgjx4LApRDTkKaQo3-3eRWUqQjw/exec";
 const cloudinaryUrl = "https://api.cloudinary.com/v1_1/xpzpo4yy/image/upload";
 const cloudinaryPreset = "lunascakes_upload";
 
