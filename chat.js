@@ -10,14 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Toggle Chat Window
   chatButton.addEventListener("click", () => {
-    chatWindow.classList.toggle("open");
+    chatWindow.classList.toggle("active");
     const badge = chatButton.querySelector(".chat-badge");
     if (badge) badge.style.display = "none";
   });
 
   if (closeChat) {
     closeChat.addEventListener("click", () => {
-      chatWindow.classList.remove("open");
+      chatWindow.classList.remove("active");
     });
   }
 
@@ -66,7 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function handleUserMessage(messageText) {
     appendMessage("user", messageText);
 
-    // Bot Response Logic
     setTimeout(() => {
       const reply = getBotReply(messageText.toLowerCase());
       appendMessage("bot", reply);
