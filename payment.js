@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const data = bankData[providerKey];
     if (!data || !paymentDetails) return;
 
+    // Fix: use 'selected' class which is what payment.css styles
     document.querySelectorAll(".payment-card").forEach(btn => btn.classList.remove("selected"));
     const activeBtn = document.getElementById(providerKey === "telebirr" ? "telebirrBtn" : "cbeBtn");
     if (activeBtn) activeBtn.classList.add("selected");
@@ -67,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
+    // Re-attach copy listener after innerHTML update
     const copyBtn   = document.getElementById("copyNumberBtn");
     const copyToast = document.getElementById("copyToast");
     if (copyBtn) {
@@ -79,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (copyToast) copyToast.style.display = "none";
           }, 2500);
         }).catch(() => {
+          // Fallback for browsers without clipboard API
           copyBtn.textContent = "Use long-press to copy";
         });
       });
@@ -120,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const overlay = document.getElementById("successOverlay");
     if (!overlay) {
+      // Fallback if modal HTML isn't present
       alert("🎉 Order submitted!\n\nOrder ID: " + orderId);
       window.location.href = "index.html";
       return;
@@ -140,10 +144,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = "hidden";
   }
 
+  // Close overlay when clicking the home button (handled inline in HTML)
   window.goHome = function () {
     window.location.href = "index.html";
   };
 
+  // Also allow QR image download via fetch → blob (handles cross-origin gracefully)
   window.downloadQR = async function () {
     const img = document.getElementById("qrCodeImage");
     if (!img) return;
@@ -157,6 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
       a.click();
       URL.revokeObjectURL(url);
     } catch (_) {
+      // Fallback: open in new tab so user can long-press to save
       window.open(img.src, "_blank");
     }
   };
@@ -187,6 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       if (submitBtn) { submitBtn.textContent = "Uploading receipt..."; submitBtn.disabled = true; }
 
+      // 1. Upload receipt to Cloudinary
       const file = receiptFileInput.files[0];
       const cloudinaryData = new FormData();
       cloudinaryData.append("file", file);
@@ -199,10 +207,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (submitBtn) submitBtn.textContent = "Finalizing order...";
 
+      // 2. Build full payload (includes cf-turnstile-response from index.html)
       const fullPayload = { ...pendingOrder, receiptUrl };
       const formData    = new URLSearchParams();
       for (const key in fullPayload) formData.append(key, fullPayload[key]);
 
+      // 3. POST to Google Apps Script
       const response = await fetch(scriptURL, { method: "POST", body: formData });
       const result   = await response.json();
 
