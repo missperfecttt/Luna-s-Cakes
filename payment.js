@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const paymentDetails = document.getElementById("paymentDetails");
   const receiptFileInput = document.getElementById("paymentScreenshot") || document.getElementById("receiptImage");
 
-  const scriptURL       = "https://script.google.com/macros/s/AKfycbxfhaPVfRMZz4Wu17uQps-Sjrq64lAiXveFuEHfV34q2cGNOKAWSBR6vJcedg44mq86/exec";
+  const scriptURL       = "https://script.google.com/macros/s/AKfycby3dGfeW3akUNI3XPzCLMaXBmPLXpjQ7JAmMbDTzSXzgjx4LApRDTkKaQo3-3eRWUqQjw/exec";
   const cloudinaryUrl   = "https://api.cloudinary.com/v1_1/xpzpo4yy/image/upload";
   const cloudinaryPreset = "lunascakes_upload";
 
