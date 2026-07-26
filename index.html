@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="chat.css">
 
   <!-- Cloudflare Turnstile Anti-Spam Script -->
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad" async defer></script>
 </head>
 
 <body>
@@ -197,6 +197,9 @@
             <div class="input-wrapper">
               <label for="deliveryDate">Delivery / Pickup Date *</label>
               <input id="deliveryDate" type="date" required />
+              <small id="dateHelp" class="input-hint" style="display: block; margin-top: 5px; font-size: 0.83rem; color: #777;">
+                📅 Minimum 48 hours lead time required.
+              </small>
             </div>
             <div class="input-wrapper">
               <label for="deliveryTime">Preferred Time *</label>
@@ -241,10 +244,19 @@
 
         <!-- Anti-Spam Widget -->
         <div style="margin-bottom: 1rem;">
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAAD9no7V-y6wE3mQ1" data-theme="light"></div>
+          <div
+            class="cf-turnstile"
+            id="turnstileWidget"
+            data-sitekey="0x4AAAAAAD9no7V-y6wE3mQ1"
+            data-theme="light"
+            data-callback="onTurnstileSuccess"
+            data-expired-callback="onTurnstileExpired"
+            data-error-callback="onTurnstileError"
+          ></div>
+          <p id="captchaStatus" style="margin-top: 0.4rem; font-size: 0.85rem; color: #888;">🔒 Please complete the security check above to continue.</p>
         </div>
 
-        <button type="submit" class="btn btn-submit">Place Order & Proceed to Payment →</button>
+        <button type="submit" class="btn btn-submit" id="submitOrderBtn" disabled style="opacity:0.6; cursor:not-allowed;">Place Order & Proceed to Payment →</button>
       </form>
     </div>
   </section>
