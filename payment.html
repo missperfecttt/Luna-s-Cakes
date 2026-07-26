@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Payment Verification — Luna's Cakes Checkout</title>
+  <title>Payment Verification — Family Bakery Checkout</title>
   <link rel="stylesheet" href="payment.css">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -91,6 +91,36 @@
           Submit Payment Verification →
         </button>
       </form>
+    </div>
+  </div>
+
+  <!-- ===== SUCCESS OVERLAY WITH QR CODE ===== -->
+  <div id="successOverlay" class="success-overlay">
+    <div class="success-modal">
+      <!-- Confetti dots -->
+      <div class="confetti-row" aria-hidden="true">
+        <span>🎉</span><span>🍰</span><span>✨</span><span>🎂</span><span>🎊</span>
+      </div>
+
+      <div class="success-icon">✅</div>
+      <h2 class="success-title">Order Placed!</h2>
+      <p class="success-subtitle">Your receipt has been received. We'll verify and confirm shortly.</p>
+
+      <div class="qr-section">
+        <p class="qr-label">Your Order ID</p>
+        <div class="qr-order-id" id="qrOrderId"></div>
+        <div class="qr-frame">
+          <img id="qrCodeImage" src="" alt="Order QR Code" class="qr-img" />
+        </div>
+        <p class="qr-save-hint">📲 Screenshot or save this QR code — it's your order reference!</p>
+      </div>
+
+      <div id="qrEmailNote" class="qr-email-note"></div>
+
+      <div class="success-actions">
+        <button class="btn-download-qr" onclick="downloadQR()" id="qrDownloadBtn">⬇ Save QR Code</button>
+        <button class="btn-go-home" onclick="goHome()">🏠 Back to Home</button>
+      </div>
     </div>
   </div>
 
