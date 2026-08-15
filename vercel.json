@@ -18,6 +18,10 @@
     {
       "src": "/test-telegram",
       "dest": "/api/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
     }
   ]
 }
