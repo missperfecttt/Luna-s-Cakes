@@ -112,11 +112,11 @@ body {
 }
 
 .logo-img {
-  height: 82px;
+  height: 90px;
   width: auto;
   display: block;
   object-fit: contain;
-  border-radius: 24px 32px 20px 28px / 28px 20px 32px 24px;
+  /* Blend mode to drop white backgrounds if necessary, though sticker style with white border is fine */
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
 }
 
@@ -363,8 +363,21 @@ body {
 }
 
 .card-image {
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
+  height: 200px;
+  margin: -2.5rem -2.5rem 1.5rem -2.5rem;
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .card-image img {
+  transform: scale(1.05);
 }
 
 .card h3 {
@@ -393,30 +406,47 @@ body {
 /* Gallery Portfolio Grid */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
 }
 
 .gallery-item {
-  background-color: var(--pure-white);
-  border: 1px solid var(--border-subtle);
+  position: relative;
   border-radius: var(--radius-card);
-  padding: 1.8rem 1rem;
-  text-align: center;
-  transition: all 200ms ease;
+  overflow: hidden;
+  height: 300px;
   cursor: pointer;
+  box-shadow: var(--shadow-subtle);
 }
 
-.gallery-item span {
-  font-size: 2.8rem;
-  display: block;
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+.gallery-item .overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(59,21,84,0.9), transparent);
+  padding: 2rem 1.5rem 1.5rem;
+  color: var(--pure-white);
+  transition: opacity 0.3s ease;
 }
 
 .gallery-item p {
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  color: var(--deep-plum);
-  margin-top: 0.5rem;
+  margin: 0;
+  font-family: var(--font-heading);
+  letter-spacing: 1px;
 }
 
 .gallery-item:hover {
@@ -660,6 +690,298 @@ body {
   cursor: pointer;
   display: none;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+/* ================= NEW SECTIONS ================= */
+
+/* Why Us Section */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.feature-box {
+  text-align: center;
+  padding: 2rem;
+  background: var(--pure-white);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-subtle);
+  border: 1px solid var(--border-subtle);
+  transition: transform 0.3s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-yellow);
+}
+
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1.5rem;
+  background: var(--soft-gray);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-icon svg {
+  width: 30px;
+  height: 30px;
+  fill: var(--primary-yellow);
+}
+
+.feature-box h3 {
+  font-family: var(--font-heading);
+  color: var(--deep-plum);
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
+}
+
+.feature-box p {
+  font-size: 0.95rem;
+  color: var(--charcoal);
+}
+
+/* Occasions Section */
+.occasions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.occasion-card {
+  position: relative;
+  height: 250px;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.occasion-card img {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  transition: transform 0.6s ease;
+}
+
+.occasion-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(42, 35, 32, 0.4);
+  z-index: 2;
+  transition: background 0.3s ease;
+}
+
+.occasion-card:hover img {
+  transform: scale(1.05);
+}
+.occasion-card:hover::before {
+  background: rgba(42, 35, 32, 0.2);
+}
+
+.occasion-card h3 {
+  position: relative;
+  z-index: 3;
+  color: var(--pure-white);
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  letter-spacing: 2px;
+}
+
+/* Story Section */
+.story-section {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  background-color: var(--soft-gray);
+  padding: 6rem 3rem;
+  max-width: 100%;
+}
+
+.story-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.story-content h2 {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  color: var(--deep-plum);
+  margin-bottom: 1.5rem;
+}
+
+.story-content p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+.story-image {
+  flex: 1;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-plum);
+}
+.story-image img {
+  width: 100%;
+  display: block;
+}
+
+/* Process Section */
+.process-steps {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+
+.step {
+  text-align: center;
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
+}
+
+.step-num {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  color: var(--primary-yellow);
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: -1rem;
+}
+
+.step h3 {
+  font-family: var(--font-heading);
+  color: var(--deep-plum);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+/* Pricing Section */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.price-card {
+  background: var(--pure-white);
+  padding: 3rem 2rem;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-subtle);
+  text-align: center;
+  box-shadow: var(--shadow-subtle);
+}
+
+.price-card.featured {
+  border: 2px solid var(--primary-yellow);
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-plum);
+}
+
+.price-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--deep-plum);
+  margin-bottom: 0.5rem;
+}
+
+.price-amount {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--primary-yellow);
+  margin-bottom: 2rem;
+  font-family: var(--font-heading);
+}
+
+.price-features {
+  list-style: none;
+  margin-bottom: 2.5rem;
+  text-align: left;
+}
+
+.price-features li {
+  margin-bottom: 0.8rem;
+  color: var(--charcoal);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.price-features li::before {
+  content: '✓';
+  color: var(--success-green);
+  font-weight: bold;
+}
+
+/* Delivery Section */
+.info-boxes {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.info-box {
+  flex: 1;
+  background: var(--pure-white);
+  padding: 2rem;
+  border-radius: var(--radius-card);
+  border-left: 4px solid var(--primary-yellow);
+  box-shadow: var(--shadow-subtle);
+}
+.info-box h3 {
+  font-family: var(--font-heading);
+  color: var(--deep-plum);
+  margin-bottom: 1rem;
+}
+
+/* Social Section */
+.social-section {
+  text-align: center;
+  background: var(--deep-plum);
+  color: var(--pure-white);
+  padding: 4rem 2rem;
+}
+.social-section h2 {
+  color: var(--pure-white);
+}
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  color: var(--primary-yellow);
+  transition: all 0.3s ease;
+}
+.social-btn:hover {
+  background: var(--primary-yellow);
+  color: var(--deep-plum);
+  transform: translateY(-3px);
+}
+.social-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
 }
 
 @media (max-width: 868px) {
@@ -705,5 +1027,18 @@ body {
   .form-grid-2,
   .form-grid-3 {
     grid-template-columns: 1fr;
+  }
+  
+  .occasions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .story-section {
+    flex-direction: column;
+    padding: 4rem 1.5rem;
+  }
+  
+  .info-boxes {
+    flex-direction: column;
   }
 }

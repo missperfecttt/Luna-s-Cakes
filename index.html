@@ -22,7 +22,7 @@
   <!-- Main Header -->
   <header class="header">
     <div class="logo">
-      <img src="logo.jpg" alt="Family Bakery Logo" class="logo-img"
+      <img src="Family.png" alt="Family Bakery Logo" class="logo-img"
         onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
       <span class="logo-icon" style="display: none;">🍰</span>
       <div class="logo-text">Family Bakery</div>
@@ -30,20 +30,20 @@
     <button class="menu-btn" id="menuBtn" aria-label="Toggle Navigation">☰</button>
   </header>
 
-  <!-- Navigation Bar -->
   <nav class="nav" id="nav">
     <a href="#home">Home</a>
-    <a href="#about">About Us</a>
-    <a href="#cakes">Specialties</a>
-    <a href="#gallery">Portfolio</a>
-    <a href="#order">Order Form</a>
+    <a href="#about">About</a>
+    <a href="#cakes">Signature Cakes</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#order">Order</a>
     <a href="#contact">Contact</a>
   </nav>
 
   <!-- Hero Section -->
   <section id="home" class="hero">
     <div class="hero-content">
-      <span class="hero-subtitle">We Are</span>
+      <span class="hero-subtitle">Family Bakery</span>
       <h1>Gourmet Artisan Confections</h1>
       <p>
         Bespoke cakes and hand-crafted patisserie prepared fresh to elevate your special celebrations.
@@ -53,25 +53,14 @@
     <div class="hero-overlay"></div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="section about-section">
-    <div class="section-badge">Our Craft</div>
-    <h2>Handcrafted Excellence</h2>
-    <p class="center-text">
-      At <strong>Family Bakery</strong>, we combine traditional European baking technique with rich, local flavor
-      profiles. From custom layered birthday cakes to multi-tiered event centerpieces, every creation is baked fresh to
-      order using finest raw ingredients.
-    </p>
-  </section>
-
-  <!-- Featured Products Section -->
+  <!-- Featured Products Section (Signature Cakes) -->
   <section id="cakes" class="section cakes-section">
     <div class="section-badge">Catalog Specialties</div>
     <h2>Signature Creations</h2>
     <div class="cards">
       <div class="card">
         <div class="card-badge">Bestseller</div>
-        <div class="card-image">🍫</div>
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80" alt="Chocolate Ganache"></div>
         <h3>Belgian Dark Chocolate Ganache</h3>
         <p>Decadent cacao layers paired with velvet buttercream and bittersweet truffle frosting.</p>
         <span class="price-tag">From 1,000 ETB</span>
@@ -79,7 +68,7 @@
 
       <div class="card">
         <div class="card-badge">Popular</div>
-        <div class="card-image">🎂</div>
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1557308536-ee471ef2c390?auto=format&fit=crop&w=800&q=80" alt="Vanilla Sponge"></div>
         <h3>Classic Celebration Layer</h3>
         <p>Custom-tinted vanilla sponge with berry compote filling, crafted for birthdays & milestones.</p>
         <span class="price-tag">From 1,200 ETB</span>
@@ -87,10 +76,39 @@
 
       <div class="card">
         <div class="card-badge">Custom</div>
-        <div class="card-image">🎓</div>
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=800&q=80" alt="Wedding Tier"></div>
         <h3>Graduation & Gala Tier</h3>
         <p>Sophisticated multi-tiered custom cake personalized to your theme & color palette.</p>
         <span class="price-tag">From 1,500 ETB</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Family Bakery Section -->
+  <section id="about" class="section">
+    <div class="section-badge">Why Choose Us</div>
+    <h2>Crafted with Excellence</h2>
+    <div class="features-grid">
+      <div class="feature-box">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,19.93C7.05,19.43 4,16.05 4,12C4,7.95 7.05,4.57 11,4.07V19.93M13,4.07C16.95,4.57 20,7.95 20,12C20,16.05 16.95,19.43 13,19.93V4.07Z"/></svg>
+        </div>
+        <h3>Premium Ingredients</h3>
+        <p>We source only the finest raw ingredients for a superior taste and texture.</p>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12,3L2,12H5V20H19V12H22L12,3M12,7.7C14.1,7.7 15.8,9.4 15.8,11.5C15.8,14.5 12,18 12,18C12,18 8.2,14.5 8.2,11.5C8.2,9.4 9.9,7.7 12,7.7Z"/></svg>
+        </div>
+        <h3>Artisan Craftsmanship</h3>
+        <p>Every cake is hand-crafted and meticulously designed by our master bakers.</p>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/></svg>
+        </div>
+        <h3>Reliable Delivery</h3>
+        <p>Punctual and pristine delivery right to your event venue or doorstep.</p>
       </div>
     </div>
   </section>
@@ -100,12 +118,195 @@
     <div class="section-badge">Portfolio</div>
     <h2>Sweet Inspiration</h2>
     <div class="gallery">
-      <div class="gallery-item"><span>🍰</span><p>Multi-Tiered</p></div>
-      <div class="gallery-item"><span>🧁</span><p>Macaron Sets</p></div>
-      <div class="gallery-item"><span>🎂</span><p>Floral Birthday</p></div>
-      <div class="gallery-item"><span>🍓</span><p>Berry Velvet</p></div>
-      <div class="gallery-item"><span>🍫</span><p>Truffle Ganache</p></div>
-      <div class="gallery-item"><span>🌸</span><p>Pastel Event</p></div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=600&q=80" alt="Multi-Tiered">
+        <div class="overlay"><p>Multi-Tiered</p></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?auto=format&fit=crop&w=600&q=80" alt="Macaron Sets">
+        <div class="overlay"><p>Macaron Sets</p></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=600&q=80" alt="Floral Birthday">
+        <div class="overlay"><p>Floral Birthday</p></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=600&q=80" alt="Berry Velvet">
+        <div class="overlay"><p>Berry Velvet</p></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1582236371587-0b1a030ef758?auto=format&fit=crop&w=600&q=80" alt="Truffle Ganache">
+        <div class="overlay"><p>Truffle Ganache</p></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=600&q=80" alt="Pastel Event">
+        <div class="overlay"><p>Pastel Event</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Occasions Section -->
+  <section class="section">
+    <div class="section-badge">Memories</div>
+    <h2>For Every Occasion</h2>
+    <div class="occasions-grid">
+      <div class="occasion-card">
+        <img src="https://images.unsplash.com/photo-1530103862676-de88b3988b9a?auto=format&fit=crop&w=800&q=80" alt="Birthday">
+        <h3>Birthdays</h3>
+      </div>
+      <div class="occasion-card">
+        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80" alt="Wedding">
+        <h3>Weddings</h3>
+      </div>
+      <div class="occasion-card">
+        <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=800&q=80" alt="Graduation">
+        <h3>Graduations</h3>
+      </div>
+      <div class="occasion-card">
+        <img src="https://images.unsplash.com/photo-1560580980-87a71a067645?auto=format&fit=crop&w=800&q=80" alt="Anniversary">
+        <h3>Anniversaries</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story -->
+  <section class="story-section">
+    <div class="story-content">
+      <h2>Baked with Purpose</h2>
+      <p>
+        At <strong>Family Bakery</strong>, our journey started with a simple belief: every celebration deserves a centerpiece that looks spectacular and tastes unforgettable.
+      </p>
+      <p>
+        We blend traditional European baking techniques with rich, local flavor profiles. From custom layered birthday cakes to multi-tiered event centerpieces, every creation is baked fresh to order using the finest ingredients.
+      </p>
+    </div>
+    <div class="story-image">
+      <img src="https://images.unsplash.com/photo-1556910113-1b918663a8a3?auto=format&fit=crop&w=800&q=80" alt="Baking Process">
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section">
+    <div class="section-badge">Process</div>
+    <h2>How It Works</h2>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Select Your Cake</h3>
+        <p>Browse our gallery and pricing options to find the perfect style.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Fill Order Form</h3>
+        <p>Provide your details, flavors, and design references below.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Secure Payment</h3>
+        <p>Pay easily via Telebirr or CBE to confirm your booking.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Enjoy</h3>
+        <p>Pick up your cake or have it delivered fresh on your special day.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section reviews-section">
+    <div class="section-badge">Client Trust</div>
+    <h2>Loved by Our Customers</h2>
+    <div class="review-grid">
+      <div class="review">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>"The cake was absolute perfection. Visually grand and tasted divine."</p>
+        <div class="review-author">— Sara M.</div>
+      </div>
+      <div class="review">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>"Flawless delivery, prompt communication, and exceptional artistry."</p>
+        <div class="review-author">— Daniel K.</div>
+      </div>
+      <div class="review">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>"The chocolate ganache was the best cake I've ever had in Addis!"</p>
+        <div class="review-author">— Meron T.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="section">
+    <div class="section-badge">Investment</div>
+    <h2>Pricing Packages</h2>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Classic Tier</h3>
+        <div class="price-amount">1,000 ETB</div>
+        <ul class="price-features">
+          <li>6-8 Servings</li>
+          <li>Standard Flavors</li>
+          <li>Simple Decoration</li>
+          <li>48h Notice</li>
+        </ul>
+        <a href="#order" class="btn">Order Now</a>
+      </div>
+      <div class="price-card featured">
+        <h3>Celebration</h3>
+        <div class="price-amount">2,500 ETB</div>
+        <ul class="price-features">
+          <li>15-20 Servings</li>
+          <li>Premium Flavors</li>
+          <li>Custom Design & Text</li>
+          <li>Fondant Details</li>
+        </ul>
+        <a href="#order" class="btn">Order Now</a>
+      </div>
+      <div class="price-card">
+        <h3>Gala / Event</h3>
+        <div class="price-amount">5,000+ ETB</div>
+        <ul class="price-features">
+          <li>30+ Servings</li>
+          <li>Multi-Tiered Layout</li>
+          <li>Luxury Fondant Art</li>
+          <li>Delivery Included</li>
+        </ul>
+        <a href="#order" class="btn">Order Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Delivery Information -->
+  <section class="section">
+    <div class="section-badge">Logistics</div>
+    <h2>Delivery & Payment</h2>
+    <div class="info-boxes">
+      <div class="info-box">
+        <h3>Secure Payments</h3>
+        <p>We accept 100% secure local payments through <strong>Telebirr</strong> and <strong>Commercial Bank of Ethiopia (CBE)</strong>. A receipt will be requested upon order submission.</p>
+      </div>
+      <div class="info-box">
+        <h3>Delivery Info</h3>
+        <p>We offer reliable delivery across Addis Ababa. Delivery fees are calculated based on your specific location. Pickup is also available at our bakery.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Media -->
+  <section class="social-section">
+    <h2>Follow Our Sweet Journey</h2>
+    <p>Join our community on social media for daily inspiration and exclusive offers.</p>
+    <div class="social-links">
+      <a href="#" class="social-btn" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z" /></svg>
+      </a>
+      <a href="#" class="social-btn" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" /></svg>
+      </a>
+      <a href="#" class="social-btn" aria-label="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64c0 3.33 2.76 5.7 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z" /></svg>
+      </a>
     </div>
   </section>
 
@@ -261,24 +462,7 @@
     </div>
   </section>
 
-  <!-- Testimonials -->
-  <section class="section reviews-section">
-    <div class="section-badge">Client Trust</div>
-    <h2>Loved by Our Customers</h2>
-    <div class="review-grid">
-      <div class="review">
-        <div class="stars">⭐⭐⭐⭐⭐</div>
-        <p>"The cake was absolute perfection. Visually grand and tasted divine."</p>
-        <div class="review-author">— Sara M.</div>
-      </div>
-
-      <div class="review">
-        <div class="stars">⭐⭐⭐⭐⭐</div>
-        <p>"Flawless delivery, prompt communication, and exceptional artistry."</p>
-        <div class="review-author">— Daniel K.</div>
-      </div>
-    </div>
-  </section>
+  <!-- Reviews moved above pricing -->
 
   <!-- Contact Section -->
   <section id="contact" class="section contact-section">
