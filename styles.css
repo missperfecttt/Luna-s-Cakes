@@ -984,19 +984,86 @@ body {
   fill: currentColor;
 }
 
-/* Google Translate Customization */
-.goog-te-banner-frame.skiptranslate {
+/* Google Translate Customization — Hide raw widget, use custom pill */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-balloon-frame {
   display: none !important;
-} 
-body {
-  top: 0px !important; 
 }
-.goog-te-gadget-simple {
-  border: 1px solid var(--border-subtle) !important;
-  border-radius: var(--radius-btn) !important;
-  padding: 4px 8px !important;
-  font-family: var(--font-body) !important;
-  background-color: var(--pure-white) !important;
+body {
+  top: 0px !important;
+}
+.hidden-translate-element {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}
+.goog-te-gadget-simple,
+.goog-te-gadget {
+  display: none !important;
+}
+
+/* Custom Language Pill */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.custom-lang-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--warm-cream);
+  border: 1.5px solid var(--primary-yellow);
+  border-radius: 30px;
+  padding: 6px 14px 6px 10px;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 2px 8px rgba(232, 168, 0, 0.15);
+}
+
+.custom-lang-pill:hover {
+  background: var(--primary-yellow);
+  border-color: var(--deep-plum);
+  box-shadow: 0 4px 14px rgba(59, 21, 84, 0.2);
+}
+
+.custom-lang-pill:hover .lang-globe-icon {
+  color: var(--deep-plum);
+}
+
+.custom-lang-pill:hover .lang-select-input {
+  background: transparent;
+  color: var(--deep-plum);
+}
+
+.lang-globe-icon {
+  color: var(--primary-yellow);
+  flex-shrink: 0;
+  transition: color 0.25s ease;
+  pointer-events: none;
+}
+
+.lang-select-input {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--deep-plum);
+  cursor: pointer;
+  outline: none;
+  letter-spacing: 0.3px;
+  min-width: 110px;
+}
+
+.lang-select-input option {
+  background: var(--pure-white);
+  color: var(--charcoal);
+  font-weight: 600;
 }
 
 @media (max-width: 868px) {
