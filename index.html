@@ -27,7 +27,10 @@
       <span class="logo-icon" style="display: none;">🍰</span>
       <div class="logo-text">Family Bakery</div>
     </div>
-    <button class="menu-btn" id="menuBtn" aria-label="Toggle Navigation">☰</button>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <div id="google_translate_element" style="margin-top: 4px;"></div>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle Navigation">☰</button>
+    </div>
   </header>
 
   <nav class="nav" id="nav">
@@ -479,12 +482,23 @@
     </a>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
+    <div style="margin-bottom: 1rem;">
+      <a href="tos.html" style="color: var(--warm-cream); margin: 0 10px; text-decoration: underline;">Terms of Service</a>
+      <a href="privacy.html" style="color: var(--warm-cream); margin: 0 10px; text-decoration: underline;">Privacy Policy</a>
+    </div>
     <p>© 2026 Family Bakery — Crafted with Passion & Elegance</p>
   </footer>
 
   <button id="topBtn" class="top-btn" aria-label="Scroll to Top">↑</button>
+
+  <!-- Google Translate -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,am,om', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <!-- Chat Assistant -->
   <div id="chatButton" title="Chat with Family Bakery Assistant">

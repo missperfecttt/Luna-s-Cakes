@@ -984,7 +984,26 @@ body {
   fill: currentColor;
 }
 
+/* Google Translate Customization */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+} 
+body {
+  top: 0px !important; 
+}
+.goog-te-gadget-simple {
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-btn) !important;
+  padding: 4px 8px !important;
+  font-family: var(--font-body) !important;
+  background-color: var(--pure-white) !important;
+}
+
 @media (max-width: 868px) {
+  .section {
+    padding: 3rem 1.5rem;
+  }
+  
   .header {
     padding: 0 1.5rem;
   }
