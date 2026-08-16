@@ -5,9 +5,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const paymentDetails = document.getElementById("paymentDetails");
   const receiptFileInput = document.getElementById("paymentScreenshot") || document.getElementById("receiptImage");
 
-  const scriptURL       = "https://script.google.com/macros/s/AKfycbxP0fobhi21pgGi4UrOqoQ40PKqfu3lNfGPk2xHxQFfZPCyAMqCBLGhwfJw0gxuyLuKEA/exec";
-  const cloudinaryUrl   = "https://api.cloudinary.com/v1_1/xpzpo4yy/image/upload";
-  const cloudinaryPreset = "lunascakes_upload";
+// IndexedDB Helper to get files
+function getFromDB(key) {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("LunaCakes", 1);
+    request.onupgradeneeded = (e) => {
+      e.target.result.createObjectStore("files");
+    };
+    request.onsuccess = (e) => {
+      const db = e.target.result;
+      if (!db.objectStoreNames.contains("files")) return resolve(null);
+      const tx = db.transaction("files", "readonly");
+      const getReq = tx.objectStore("files").get(key);
+      getReq.onsuccess = () => resolve(getReq.result);
+      getReq.onerror = () => reject(getReq.error);
+    };
+    request.onerror = () => reject(request.error);
+  });
+}
 
   // ---- Pre-fill name & phone from stored order ----
   const storedOrderRaw = localStorage.getItem("pendingOrder");
@@ -136,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const emailNote = document.getElementById("qrEmailNote");
     if (emailNote) {
       emailNote.innerHTML = email
-        ? `📧 A confirmation with this QR code has been sent to <strong>${email}</strong>`
+        ? `📧 A confirmation with this QR code has been sent to <strong>${email}</strong>.<br><br><strong>⚠️ Please check your SPAM or JUNK folder in your email.</strong>`
         : "📧 Your order has been recorded successfully.";
     }
 
@@ -192,32 +207,44 @@ document.addEventListener("DOMContentLoaded", () => {
     const origBtnText   = submitBtn ? submitBtn.textContent : "Submit Payment Verification";
 
     try {
-      if (submitBtn) { submitBtn.textContent = "Uploading receipt..."; submitBtn.disabled = true; }
+      if (submitBtn) { submitBtn.textContent = "Finalizing order..."; submitBtn.disabled = true; }
 
-      // 1. Upload receipt to Cloudinary
-      const file = receiptFileInput.files[0];
-      const cloudinaryData = new FormData();
-      cloudinaryData.append("file", file);
-      cloudinaryData.append("upload_preset", cloudinaryPreset);
+      // 1. Build FormData Payload
+      const formData = new FormData();
+      
+      // Append all pending text fields
+      for (const key in pendingOrder) {
+        if (pendingOrder[key] !== null && pendingOrder[key] !== undefined) {
+          formData.append(key, pendingOrder[key]);
+        }
+      }
 
-      const cloudRes = await fetch(cloudinaryUrl, { method: "POST", body: cloudinaryData });
-      if (!cloudRes.ok) throw new Error("Receipt image upload failed. Please try again.");
-      const cloudJson  = await cloudRes.json();
-      const receiptUrl = cloudJson.secure_url || "";
+      // Append Payment Receipt (Required)
+      formData.append("paymentScreenshot", receiptFileInput.files[0]);
 
-      if (submitBtn) submitBtn.textContent = "Finalizing order...";
+      // Append Inspiration Image from IndexedDB (Optional)
+      try {
+        const inspirationFile = await getFromDB("inspiration");
+        if (inspirationFile) {
+          formData.append("inspiration", inspirationFile);
+        }
+      } catch (e) {
+        console.warn("Could not retrieve inspiration image from DB", e);
+      }
 
-      // 2. Build full payload (includes cf-turnstile-response from index.html)
-      const fullPayload = { ...pendingOrder, receiptUrl };
-      const formData    = new URLSearchParams();
-      for (const key in fullPayload) formData.append(key, fullPayload[key]);
-
-      // 3. POST to Telegram Express Backend (Vercel API)
+      // 2. POST to Telegram Express Backend (Vercel API)
       const response = await fetch("/api/orders", { method: "POST", body: formData });
       const result   = await response.json();
 
       if (result.success === true || result.result === "success") {
         localStorage.removeItem("pendingOrder");
+        try { await getFromDB("inspiration"); /* dummy trigger to clear? No, let's clear it */ 
+          const request = indexedDB.open("LunaCakes", 1);
+          request.onsuccess = (e) => {
+             const tx = e.target.result.transaction("files", "readwrite");
+             tx.objectStore("files").delete("inspiration");
+          };
+        } catch(e){}
         showSuccessModal(result.orderId, pendingOrder.email || "");
       } else {
         throw new Error(result.error || "Payment submission failed.");

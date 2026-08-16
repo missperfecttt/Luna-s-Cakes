@@ -116,9 +116,7 @@ function sanitizeInput(str) {
 }
 
 // ================= ENDPOINTS & CONFIG =================
-const scriptURL = "https://script.google.com/macros/s/AKfycby3dGfeW3akUNI3XPzCLMaXBmPLXpjQ7JAmMbDTzSXzgjx4LApRDTkKaQo3-3eRWUqQjw/exec";
-const cloudinaryUrl = "https://api.cloudinary.com/v1_1/xpzpo4yy/image/upload";
-const cloudinaryPreset = "lunascakes_upload";
+// Configuration for external APIs have been moved to the Vercel backend
 
 // ================= FILE UPLOAD DYNAMIC BUTTON FEEDBACK =================
 const refImageInput = document.getElementById("referenceImage");
@@ -159,17 +157,9 @@ function setupDatePicker() {
   const minDateStr = leadTimeDate.toISOString().split("T")[0];
   dateInput.min = minDateStr;
 
-  // Fetch fully booked dates from Apps Script backend
-  fetch(scriptURL)
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.result === "success" && Array.isArray(data.fullyBookedDates)) {
-        fullyBookedDates = data.fullyBookedDates;
-      }
-    })
-    .catch((err) => {
-      console.warn("Could not fetch fully booked dates array:", err);
-    });
+  // Fully booked dates are managed locally or updated manually
+  // default to empty until an API is created
+  fullyBookedDates = [];
 
   // Date selection validation listener
   dateInput.addEventListener("change", function () {
@@ -198,7 +188,25 @@ function setupDatePicker() {
       return;
     }
 
-    // Reset date help indicator if date is valid
+// IndexedDB Helper to save files
+function saveToDB(key, file) {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("LunaCakes", 1);
+    request.onupgradeneeded = (e) => {
+      e.target.result.createObjectStore("files");
+    };
+    request.onsuccess = (e) => {
+      const db = e.target.result;
+      const tx = db.transaction("files", "readwrite");
+      tx.objectStore("files").put(file, key);
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    };
+    request.onerror = () => reject(request.error);
+  });
+}
+
+// Reset date help indicator if date is valid
     if (dateHelp) {
       dateHelp.textContent = "✅ Date available! (Minimum 48 hours lead time met)";
       dateHelp.style.color = "#28a745";
@@ -214,7 +222,7 @@ if (orderForm) {
   orderForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // 1. Anti-Spam Check — get token from global variable or hidden input as fallback
+    // 1. Anti-Spam Check
     const cfToken = turnstileToken ||
       (document.querySelector('[name="cf-turnstile-response"]')?.value) || "";
 
@@ -233,33 +241,16 @@ if (orderForm) {
     const originalButtonText = submitButton ? submitButton.textContent : "Place Order";
 
     try {
-      let imageUrl = "";
+      if (submitButton) {
+        submitButton.textContent = "Processing...";
+        submitButton.disabled = true;
+      }
 
-      // 2. Upload Reference Image to Cloudinary (If attached)
+      // 2. Save Reference Image to IndexedDB (If attached)
       if (fileInput && fileInput.files && fileInput.files[0]) {
-        if (submitButton) {
-          submitButton.textContent = "Uploading image...";
-          submitButton.disabled = true;
-        }
-
-        const file = fileInput.files[0];
-        const cloudinaryData = new FormData();
-        cloudinaryData.append("file", file);
-        cloudinaryData.append("upload_preset", cloudinaryPreset);
-
-        try {
-          const cloudinaryResponse = await fetch(cloudinaryUrl, {
-            method: "POST",
-            body: cloudinaryData,
-          });
-
-          if (cloudinaryResponse.ok) {
-            const cloudinaryResult = await cloudinaryResponse.json();
-            imageUrl = cloudinaryResult.secure_url || "";
-          }
-        } catch (imgErr) {
-          console.error("Cloudinary error:", imgErr);
-        }
+        await saveToDB("inspiration", fileInput.files[0]);
+      } else {
+        await saveToDB("inspiration", null); // clear old
       }
 
       // 3. Save Order Details Temporarily in Browser Storage
@@ -276,8 +267,7 @@ if (orderForm) {
         address: sanitizeInput(document.getElementById("address") ? document.getElementById("address").value.trim() : ""),
         budget: document.getElementById("budget") ? document.getElementById("budget").value : "",
         notes: sanitizeInput(document.getElementById("notes") ? document.getElementById("notes").value.trim() : ""),
-        imageUrl: imageUrl,
-        "cf-turnstile-response": cfToken   // ← Forward CAPTCHA token to backend via payment.js
+        "cf-turnstile-response": cfToken
       };
 
       localStorage.setItem("pendingOrder", JSON.stringify(pendingOrder));

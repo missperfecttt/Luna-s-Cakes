@@ -2,6 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const nodemailer = require("nodemailer");
 
 dotenv.config();
 
@@ -58,6 +59,17 @@ if (!CHAT_ID) {
 
 const TELEGRAM_API =
     `https://api.telegram.org/bot${BOT_TOKEN}`;
+
+// ============================================
+// EMAIL CONFIGURATION
+// ============================================
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
+});
 
 // ============================================
 // ESCAPE TELEGRAM HTML
@@ -742,10 +754,10 @@ ${escapeHTML(
 ━━━━━━━━━━━━━━━━━━━━
 
 📸 <b>CAKE INSPIRATION:</b>
-${data.imageUrl ? `<a href="${escapeHTML(data.imageUrl)}">View Reference Image</a>` : "None provided"}
+See attached reply below (if provided).
 
 🧾 <b>PAYMENT RECEIPT:</b>
-${data.receiptUrl ? `<a href="${escapeHTML(data.receiptUrl)}">View Payment Receipt</a>` : "None provided"}
+See attached reply below.
 
 ━━━━━━━━━━━━━━━━━━━━
 
@@ -817,10 +829,7 @@ app.post(
                 paymentMethod,
 
                 notes,
-                total,
-                
-                imageUrl,
-                receiptUrl
+                total
 
             } = req.body;
 
@@ -855,10 +864,7 @@ app.post(
                         paymentMethod,
 
                         notes,
-                        total,
-                        
-                        imageUrl,
-                        receiptUrl
+                        total
 
                     }
 
@@ -984,6 +990,41 @@ app.post(
 
                 }
 
+            }
+
+            // ==================================
+            // SEND EMAIL TO CUSTOMER
+            // ==================================
+            if (email && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+                try {
+                    const mailOptions = {
+                        from: `"Luna's Cakes" <${process.env.EMAIL_USER}>`,
+                        to: email,
+                        subject: `Order Confirmation - Luna's Cakes (#${orderId})`,
+                        html: `
+                        <div style="font-family: Arial, sans-serif; padding: 20px; color: #3B1554;">
+                            <h2 style="color: #6C2B9A;">Thank you for your order, ${name || "Customer"}!</h2>
+                            <p>We have successfully received your order and payment verification. Your order details are below:</p>
+                            <ul>
+                                <li><strong>Order ID:</strong> #${orderId}</li>
+                                <li><strong>Date:</strong> ${date || "N/A"}</li>
+                                <li><strong>Time:</strong> ${time || "N/A"}</li>
+                                <li><strong>Total:</strong> ${total || "N/A"} ETB</li>
+                                <li><strong>Cake / Flavor:</strong> ${cake || "Custom Cake"} / ${flavor || "N/A"}</li>
+                                <li><strong>Size / Quantity:</strong> ${size || "N/A"} (x${quantity || 1})</li>
+                            </ul>
+                            <p><strong>⚠️ IMPORTANT: Please check your SPAM or JUNK folder in your email.</strong></p>
+                            <p>We will contact you soon regarding your order status.</p>
+                            <br>
+                            <p>Best Regards,<br><strong>Luna's Cakes Team</strong></p>
+                        </div>
+                        `
+                    };
+                    await transporter.sendMail(mailOptions);
+                    console.log(`✅ Confirmation email sent to ${email}`);
+                } catch (emailErr) {
+                    console.error("❌ Failed to send email:", emailErr);
+                }
             }
 
             // ==================================
