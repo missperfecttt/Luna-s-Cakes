@@ -212,11 +212,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const formData    = new URLSearchParams();
       for (const key in fullPayload) formData.append(key, fullPayload[key]);
 
-      // 3. POST to Google Apps Script
-      const response = await fetch(scriptURL, { method: "POST", body: formData });
+      // 3. POST to Telegram Express Backend (Vercel API)
+      const response = await fetch("/api/orders", { method: "POST", body: formData });
       const result   = await response.json();
 
-      if (result.result === "success") {
+      if (result.success === true || result.result === "success") {
         localStorage.removeItem("pendingOrder");
         showSuccessModal(result.orderId, pendingOrder.email || "");
       } else {
