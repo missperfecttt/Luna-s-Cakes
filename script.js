@@ -118,6 +118,24 @@ function sanitizeInput(str) {
 // ================= ENDPOINTS & CONFIG =================
 // Configuration for external APIs have been moved to the Vercel backend
 
+// ================= IndexedDB Helper =================
+function saveToDB(key, file) {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("LunaCakes", 1);
+    request.onupgradeneeded = (e) => {
+      e.target.result.createObjectStore("files");
+    };
+    request.onsuccess = (e) => {
+      const db = e.target.result;
+      const tx = db.transaction("files", "readwrite");
+      tx.objectStore("files").put(file, key);
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    };
+    request.onerror = () => reject(request.error);
+  });
+}
+
 // ================= FILE UPLOAD DYNAMIC BUTTON FEEDBACK =================
 const refImageInput = document.getElementById("referenceImage");
 if (refImageInput) {
@@ -188,23 +206,7 @@ function setupDatePicker() {
       return;
     }
 
-// IndexedDB Helper to save files
-function saveToDB(key, file) {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open("LunaCakes", 1);
-    request.onupgradeneeded = (e) => {
-      e.target.result.createObjectStore("files");
-    };
-    request.onsuccess = (e) => {
-      const db = e.target.result;
-      const tx = db.transaction("files", "readwrite");
-      tx.objectStore("files").put(file, key);
-      tx.oncomplete = () => resolve();
-      tx.onerror = () => reject(tx.error);
-    };
-    request.onerror = () => reject(request.error);
-  });
-}
+
 
 // Reset date help indicator if date is valid
     if (dateHelp) {
