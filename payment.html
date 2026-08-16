@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Payment Verification — Family Bakery Checkout</title>
+  <title>Payment Verification — Luna's Cakes Checkout</title>
+  <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="payment.css">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,13 +15,24 @@
 </head>
 <body>
 
+  <!-- Main Header (matches index.html) -->
+  <header class="header">
+    <div class="logo">
+      <img src="logo.jpg" alt="Luna's Cakes Logo" class="logo-img"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
+      <span class="logo-icon" style="display: none;">🍰</span>
+      <div class="logo-text">Luna's Cakes</div>
+    </div>
+    <a href="index.html" class="menu-btn" aria-label="Back to Home" style="text-decoration:none; font-size: 0.85rem; font-weight: 600; color: var(--deep-plum, #3B1554);">← Back</a>
+  </header>
+
   <div class="payment-page-container">
     <div class="payment-box">
       <!-- Checkout Brand Header -->
       <div class="payment-header">
         <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
           <div class="logo-sticker-frame" style="transform: scale(0.9);">
-            <img src="Family.png" alt="Family Bakery Logo" class="logo-img" style="height: 65px;" onerror="this.onerror=null; this.src='logo.jpg';" />
+            <img src="Family.png" alt="Luna's Cakes Logo" class="logo-img" style="height: 65px;" onerror="this.onerror=null; this.src='logo.jpg';" />
           </div>
         </div>
         <span class="brand-pill">Checkout & Verification Portal</span>
@@ -116,6 +128,13 @@
       </div>
 
       <div id="qrEmailNote" class="qr-email-note"></div>
+
+      <!-- Spam Warning — always visible -->
+      <div class="spam-warning" style="background: #FFF3C4; border: 1.5px solid #E8A800; border-radius: 8px; padding: 0.8rem 1rem; margin-bottom: 1.2rem; text-align: center;">
+        <p style="font-size: 0.82rem; font-weight: 700; color: #3B1554; margin: 0;">
+          📬 <strong>Please check your SPAM or JUNK folder</strong> in your email for the order confirmation.
+        </p>
+      </div>
 
       <div class="success-actions">
         <button class="btn-download-qr" onclick="downloadQR()" id="qrDownloadBtn">⬇ Save QR Code</button>

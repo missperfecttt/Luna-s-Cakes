@@ -1013,7 +1013,6 @@ app.post(
                                 <li><strong>Cake / Flavor:</strong> ${cake || "Custom Cake"} / ${flavor || "N/A"}</li>
                                 <li><strong>Size / Quantity:</strong> ${size || "N/A"} (x${quantity || 1})</li>
                             </ul>
-                            <p><strong>⚠️ IMPORTANT: Please check your SPAM or JUNK folder in your email.</strong></p>
                             <p>We will contact you soon regarding your order status.</p>
                             <br>
                             <p>Best Regards,<br><strong>Luna's Cakes Team</strong></p>
