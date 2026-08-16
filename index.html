@@ -513,42 +513,30 @@
       }, 'google_translate_element');
     }
 
-    function handleLangChange(langCode) {
-      if (langCode === 'en') {
-        // Restore original language
-        var iframe = document.querySelector('.goog-te-banner-frame');
-        if (iframe) {
-          var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-          var restoreBtn = innerDoc.querySelector('.goog-te-button button');
-          if (restoreBtn) restoreBtn.click();
-        }
-        // Fallback: reload with no translate cookie
-        var url = window.location.href;
-        if (url.includes('#googtrans')) {
-          window.location.href = url.split('#googtrans')[0];
-        } else {
-          // Use the Google Translate select to set English
-          var select = document.querySelector('.goog-te-combo');
-          if (select) {
-            select.value = 'en';
-            select.dispatchEvent(new Event('change'));
-          }
-        }
-        return;
+    function setCookieAndTranslate(langCode) {
+      // Set the googtrans cookie that Google Translate reads on page load
+      var cookieVal = langCode === 'en' ? '' : '/en/' + langCode;
+      var domain = window.location.hostname;
+      // Set for both root domain and current domain
+      document.cookie = 'googtrans=' + cookieVal + '; path=/';
+      document.cookie = 'googtrans=' + cookieVal + '; path=/; domain=' + domain;
+      if (domain.indexOf('www.') === 0) {
+        document.cookie = 'googtrans=' + cookieVal + '; path=/; domain=' + domain.replace('www.', '.');
       }
-      // Trigger translation via the hidden Google Translate combo select
-      function triggerTranslate() {
-        var select = document.querySelector('.goog-te-combo');
-        if (select) {
-          select.value = langCode;
-          select.dispatchEvent(new Event('change'));
-        } else {
-          // Retry after a short delay if widget not ready yet
-          setTimeout(triggerTranslate, 300);
-        }
-      }
-      triggerTranslate();
+      window.location.reload();
     }
+
+    function handleLangChange(langCode) {
+      setCookieAndTranslate(langCode);
+    }
+
+    // On page load, restore the select to reflect current translation
+    document.addEventListener('DOMContentLoaded', function() {
+      var match = document.cookie.match(/googtrans=\/en\/([^;]+)/);
+      var currentLang = match ? match[1] : 'en';
+      var sel = document.getElementById('customLangSelect');
+      if (sel && currentLang) sel.value = currentLang;
+    });
   </script>
   <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 

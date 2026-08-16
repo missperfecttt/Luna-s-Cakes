@@ -1000,7 +1000,12 @@ body {
 }
 .goog-te-gadget-simple,
 .goog-te-gadget {
-  display: none !important;
+  /* Position off-screen but still rendered so Google Translate loads properly */
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 /* Custom Language Pill */
