@@ -742,10 +742,10 @@ ${escapeHTML(
 ━━━━━━━━━━━━━━━━━━━━
 
 📸 <b>CAKE INSPIRATION:</b>
-See attached reply below.
+${data.imageUrl ? `<a href="${escapeHTML(data.imageUrl)}">View Reference Image</a>` : "None provided"}
 
 🧾 <b>PAYMENT RECEIPT:</b>
-See attached reply below.
+${data.receiptUrl ? `<a href="${escapeHTML(data.receiptUrl)}">View Payment Receipt</a>` : "None provided"}
 
 ━━━━━━━━━━━━━━━━━━━━
 
@@ -817,7 +817,10 @@ app.post(
                 paymentMethod,
 
                 notes,
-                total
+                total,
+                
+                imageUrl,
+                receiptUrl
 
             } = req.body;
 
@@ -852,7 +855,10 @@ app.post(
                         paymentMethod,
 
                         notes,
-                        total
+                        total,
+                        
+                        imageUrl,
+                        receiptUrl
 
                     }
 
@@ -1008,8 +1014,8 @@ app.post(
                 success:
                     false,
 
-                message:
-                    "Could not submit order."
+                error:
+                    error.message || "Could not submit order."
 
             });
 
