@@ -433,3 +433,19 @@
 #sendBtn:active {
     transform: scale(0.94);
 }
+
+@media (max-width: 600px) {
+    #chatButton { right: 16px; bottom: 16px; width: 56px; height: 56px; }
+    #chatWindow {
+        right: 12px;
+        bottom: 84px;
+        width: calc(100vw - 24px);
+        max-width: calc(100vw - 24px);
+        height: min(540px, calc(100dvh - 104px));
+        max-height: calc(100dvh - 104px);
+        border-radius: 16px;
+    }
+    #chatHeader { padding: 14px 15px; }
+    #chatMessages { padding: 13px; }
+    #chatInputArea { padding: 10px 12px; }
+}
