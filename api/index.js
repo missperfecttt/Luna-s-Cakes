@@ -641,7 +641,7 @@ function createOrderMessage(
     data
 ) {
 
-    return `🎂 <b>NEW LUNA'S CAKE ORDER</b>
+    return `🎂 <b>NEW HANIT BAKERY ORDER</b>
 
 ━━━━━━━━━━━━━━━━━━━━
 
@@ -998,9 +998,9 @@ app.post(
             if (email && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
                 try {
                     const mailOptions = {
-                        from: `"Luna's Cakes" <${process.env.EMAIL_USER}>`,
+                        from: `"Hanit Bakery" <${process.env.EMAIL_USER}>`,
                         to: email,
-                        subject: `Order Confirmation - Luna's Cakes (#${orderId})`,
+                        subject: `Order Confirmation - Hanit Bakery (#${orderId})`,
                         html: `
                         <div style="font-family: Arial, sans-serif; padding: 20px; color: #3B1554;">
                             <h2 style="color: #6C2B9A;">Thank you for your order, ${name || "Customer"}!</h2>
@@ -1015,7 +1015,7 @@ app.post(
                             </ul>
                             <p>We will contact you soon regarding your order status.</p>
                             <br>
-                            <p>Best Regards,<br><strong>Luna's Cakes Team</strong></p>
+                            <p>Best Regards,<br><strong>Hanit Bakery Team</strong></p>
                         </div>
                         `
                     };
@@ -1530,7 +1530,7 @@ app.get(
 
             const testOrder =
 
-`🎂 <b>TEST — LUNA'S CAKE</b>
+`🎂 <b>TEST — HANIT BAKERY</b>
 
 ━━━━━━━━━━━━━━━━━━━━
 
@@ -1663,7 +1663,7 @@ app.get(
     (req, res) => {
 
         res.send(
-            "🎂 Luna's Cake Telegram backend is running on Vercel!"
+            "🎂 Hanit Bakery Telegram backend is running on Vercel!"
         );
 
     }

@@ -1,24 +1,24 @@
 /* ==========================================================================
-   CODE 1: MAIN SITE THEME CSS (Gourmet Yellow & Deep Plum Theme)
+   CODE 1: MAIN SITE THEME CSS (Hanit Bakery Red Theme)
    Inspired by AUI Fine Foods / High-End Confectionery House
    ========================================================================== */
 
 :root {
   /* Color Palette */
-  --primary-yellow: #E8A800;       /* Deep golden mustard (Brand Core) */
-  --secondary-yellow: #F4C430;     /* Accents & Hover States */
-  --deep-plum: #3B1554;            /* Dark Plum / Aubergine Contrast Anchor */
-  --warm-cream: #FDF8EC;           /* Rich Warm Cream Background */
-  --charcoal: #2A2320;             /* Body Text Dark Anchor */
-  --soft-gray: #F0EDE6;            /* Secondary Section Background */
-  --alert-magenta: #D4145A;        /* Announcement Bar Magenta */
+  --primary-yellow: #B3262D;       /* Bakery red brand core */
+  --secondary-yellow: #D94A50;     /* Red accents & hover states */
+  --deep-plum: #68151B;            /* Deep red contrast anchor */
+  --warm-cream: #FFF8F5;           /* Warm bakery background */
+  --charcoal: #2B1B1C;             /* Body text */
+  --soft-gray: #F8E9E8;            /* Secondary section background */
+  --alert-magenta: #9E1B23;        /* Deep red announcement accent */
   --pure-white: #FFFFFF;
   
   /* Functional Accents */
   --success-green: #2E7D4F;
   --error-red: #C23B3B;
-  --border-subtle: #E4DEC3;
-  --focus-ring: rgba(232, 168, 0, 0.4);
+  --border-subtle: #E8C9C7;
+  --focus-ring: rgba(179, 38, 45, 0.35);
   
   /* Typography */
   --font-heading: 'Cormorant Garamond', 'Playfair Display', serif;
@@ -28,7 +28,7 @@
   /* Radii & Elevation */
   --radius-btn: 4px;
   --radius-card: 8px;
-  --shadow-plum: 0 16px 40px -10px rgba(59, 21, 84, 0.12);
+  --shadow-plum: 0 16px 40px -10px rgba(104, 21, 27, 0.14);
   --shadow-subtle: 0 4px 20px rgba(42, 35, 32, 0.05);
 }
 

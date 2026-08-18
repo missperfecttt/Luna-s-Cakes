@@ -1,5 +1,5 @@
 /* ==========================================================================
-   FAMILY BAKERY — PAYMENT PAGE CSS
+   HANIT BAKERY — PAYMENT PAGE CSS
    Elegant Gold & Deep Plum Design System
    ========================================================================== */
 
@@ -9,20 +9,20 @@
    DESIGN TOKENS
    -------------------------------------------------------------------------- */
 :root {
-  --gold:          #E8A800;
-  --gold-light:    #F4C430;
-  --gold-pale:     #FFF3C4;
-  --gold-glow:     rgba(232, 168, 0, 0.35);
-  --plum:          #3B1554;
-  --plum-mid:      #5C2080;
-  --plum-soft:     rgba(59, 21, 84, 0.08);
-  --cream:         #FDF8EC;
-  --cream-dark:    #F5EDD4;
-  --border:        #E8DDB8;
-  --border-focus:  #E8A800;
+  --gold:          #B3262D;
+  --gold-light:    #D94A50;
+  --gold-pale:     #FBE3E2;
+  --gold-glow:     rgba(179, 38, 45, 0.28);
+  --plum:          #68151B;
+  --plum-mid:      #96252C;
+  --plum-soft:     rgba(104, 21, 27, 0.08);
+  --cream:         #FFF8F5;
+  --cream-dark:    #F8E9E8;
+  --border:        #E8C9C7;
+  --border-focus:  #B3262D;
   --text-dark:     #1E1208;
-  --text-mid:      #5A4A30;
-  --text-light:    #9A8870;
+  --text-mid:      #69494A;
+  --text-light:    #9A7778;
   --white:         #FFFFFF;
   --success:       #1E7B45;
   --success-bg:    #EDFAF3;

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   LUNA'S CAKES — ARTISANAL CHATBOT STYLES
+   HANIT BAKERY — ARTISANAL CHATBOT STYLES
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -433,6 +433,16 @@
 #sendBtn:active {
     transform: scale(0.94);
 }
+
+/* Hanit Bakery red theme overrides */
+#chatButton { background: linear-gradient(135deg, #B3262D 0%, #68151B 100%); }
+#chatButton:hover { background: linear-gradient(135deg, #D94A50 0%, #96252C 100%); box-shadow: 0 12px 30px rgba(179, 38, 45, 0.45), 0 0 25px rgba(217, 74, 80, 0.45); }
+#chatHeader { background: linear-gradient(135deg, #68151B 0%, #96252C 60%, #B3262D 100%); }
+#chatMessages { background: #FFF8F5; }
+.chat-chip, .chip { border-color: rgba(179, 38, 45, 0.25); }
+.chip:hover, #sendBtn:hover { background: linear-gradient(135deg, #D94A50 0%, #B3262D 100%); }
+#sendBtn { background: linear-gradient(135deg, #B3262D 0%, #96252C 100%); }
+#chatInput:focus { border-color: #B3262D; box-shadow: 0 0 0 3px rgba(179, 38, 45, 0.15); }
 
 @media (max-width: 600px) {
     #chatButton { right: 16px; bottom: 16px; width: 56px; height: 56px; }

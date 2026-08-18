@@ -40,14 +40,14 @@ function getFromDB(key) {
   const bankData = {
     telebirr: {
       title: "📱 Telebirr Direct Transfer",
-      accountName: "Family Bakery (Abigail Mekonnen)",
+      accountName: "Hanit Bakery (Abigail Mekonnen)",
       accountNo: "0988175522",
       label: "Phone Number:",
       instructions: "Open your Telebirr App → 'Send Money' or 'Pay Merchant' → enter the number below:"
     },
     cbe: {
       title: "🏦 Commercial Bank of Ethiopia (CBE)",
-      accountName: "Family Bakery / Abigail Mekonnen",
+      accountName: "Hanit Bakery / Abigail Mekonnen",
       accountNo: "1000988175522",
       label: "Account Number:",
       instructions: "Use CBE Birr, Mobile Banking, or ATM to transfer to the account below:"

@@ -726,7 +726,7 @@ function createOrderMessage(
     data
 ) {
 
-    return `🎂 <b>NEW LUNA'S CAKE ORDER</b>
+    return `🎂 <b>NEW HANIT BAKERY ORDER</b>
 
 ━━━━━━━━━━━━━━━━━━━━
 
@@ -1599,7 +1599,7 @@ app.get(
 
             const testOrder =
 
-`🎂 <b>TEST — LUNA'S CAKE</b>
+`🎂 <b>TEST — HANIT BAKERY</b>
 
 ━━━━━━━━━━━━━━━━━━━━
 
@@ -1737,7 +1737,7 @@ app.get(
     (req, res) => {
 
         res.send(
-            "🎂 Luna's Cake Telegram backend is running!"
+            "🎂 Hanit Bakery Telegram backend is running!"
         );
 
     }
@@ -1761,7 +1761,7 @@ app.listen(
 
         console.log(
 
-            `🎂 Luna's Cake backend running on port ${PORT}`
+            `🎂 Hanit Bakery backend running on port ${PORT}`
 
         );
 
