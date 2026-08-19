@@ -1,0 +1,36 @@
+name: Apply Bakery Logo
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  apply-logo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Replace logo references
+        shell: bash
+        run: |
+          found=0
+          while IFS= read -r -d '' file; do
+            if grep -q 'hanit-logo\.png' "$file"; then
+              sed -i 's/hanit-logo\.png/hanit-logo.svg/g' "$file"
+              found=1
+            fi
+          done < <(find . -type f -name '*.html' -not -path './.git/*' -print0)
+
+          if [ "$found" -eq 1 ]; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add '*.html'
+            git commit -m 'Use uploaded bakery logo across website'
+            git push
+          else
+            echo 'Logo references are already updated.'
+          fi
